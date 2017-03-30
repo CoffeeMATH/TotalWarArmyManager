@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style = "-fx-background-image: url('file:C:\Users\user\Documents\NetBeansProjects\JavaFXApplication4\src\images\bg.jpg')" fx:controller="javafxapplication4.FXMLDocumentController">
+    <children>
+        <Button fx:id="button" layoutX="439.0" layoutY="300.0" onAction="#handleButtonAction" text="Choose Player">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="18.0" />
+         </font></Button>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="700.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ChoosePlayerSceneController">
+
+   <children>
+      <ListView layoutX="244.0" layoutY="169.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="button1" layoutX="244.0" layoutY="369.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="42.0" prefWidth="200.0" text="Create New Player">
+         <font>
+            <Font name="Berlin Sans FB" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
