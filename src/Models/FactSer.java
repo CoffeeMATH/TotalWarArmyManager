@@ -20,7 +20,7 @@ public class FactSer{
 
      static void SerFacts(Faction f){
         try {
-            FileOutputStream fOut = new FileOutputStream(f.f_name +".ser");
+            FileOutputStream fOut = new FileOutputStream("./Resource/faction/" + f.f_name + ".ser");
             ObjectOutputStream out = new ObjectOutputStream(fOut);
             out.writeObject(f);
             out.close();
