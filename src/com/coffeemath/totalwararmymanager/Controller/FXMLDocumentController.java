@@ -18,13 +18,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
+import javafx.scene.image.*;
+import java.lang.*;
 /**
  *
  * @author L-LHora
  */
 public class FXMLDocumentController implements Initializable {
-    
+    @FXML
+    private ImageView image;
+
     @FXML
     private Button button;
 
@@ -51,6 +54,6 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+       // image.setImage(new Image ("/average.png"));
     }
 }
