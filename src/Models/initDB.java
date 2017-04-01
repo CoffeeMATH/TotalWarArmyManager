@@ -30,15 +30,17 @@ public class initDB {
                     " FOREIGN KEY(G_ID) REFERENCES GAMES(GAME_ID))";
             stmt.executeUpdate(sql);
             sql = "CREATE TABLE ARMY" +
-                    "(ARMY_ID     INT," +
-                    " ARMY_NAME   TEXT," +
-                    " TYPE        INT)"; //0 for Land army and 1 for Navy
+                    "(ARMY_ID     INT PRIMARY KEY NOT NULL," +
+                    " ARMY_NAME   TEXT            NOT NULL," +
+                    " TYPE        INT             NOT NULL)"; //0 for Land army and 1 for Navy
             stmt.executeUpdate(sql);
             sql = "CREATE TABLE GAME_ARMY" +
                     "(G_ID        INT," +
                     " A_ID        INT," +
                     " FOREIGN KEY(G_ID) REFERENCES GAMES(GAME_ID)," +
                     " FOREIGN KEY(A_ID) REFERENCES ARMY(ARMY_ID))";
+            stmt.executeUpdate(sql);
+
             stmt.close();
 
             c.close();
