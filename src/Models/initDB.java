@@ -1,3 +1,5 @@
+package Models;
+
 import java.sql.*;
 public class initDB {
     public static void main(String args[]){
