@@ -16,12 +16,12 @@ public class initDB {
 
             sql = "CREATE TABLE PLAYERS" +
                     "(PLAYER_ID     INT PRIMARY KEY NOT NULL," +
-                    " PLAYER_NAME   TEXT            NOT NULL)";
+                    " PLAYER_NAME   NUMERIC            NOT NULL)";
             stmt.executeUpdate(sql);
 
             sql =  "CREATE TABLE GAMES" +
                     "(GAME_ID     INT PRIMARY KEY NOT NULL," +
-                    " GAME_NAME   TEXT            NOT NULL)";
+                    " GAME_NAME   NUMERIC            NOT NULL)";
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE PLAYER_GAME" +
@@ -33,7 +33,7 @@ public class initDB {
 
             sql = "CREATE TABLE ARMY" +
                     "(ARMY_ID          INT PRIMARY KEY NOT NULL," +
-                    " ARMY_NAME        TEXT            NOT NULL," +
+                    " ARMY_NAME        NUMERIC            NOT NULL," +
                     " TERRAIN_TYPE     INT             NOT NULL)"; // 0:LAND, 1:NAVY
             stmt.executeUpdate(sql);
 
@@ -46,12 +46,12 @@ public class initDB {
 
             sql =  "CREATE TABLE UNIT" +
                     "(UNIT_ID           INT PRIMARY KEY NOT NULL," +
-                    " UNIT_NAME         TEXT            NOT NULL," +
+                    " UNIT_NAME         NUMERIC            NOT NULL," +
                     " FACTION_ID        INT             NOT NULL," + // 0:ROME, 1:CARTAGE, 2:MACEDOM
                     " UPKEEP_COST       INT             NOT NULL," +
                     " RECRUITMENT_COST  INT             NOT NULL," +
-                    " T_TYPE            INT             NOT NULL," + // 0:LAND, 1:NAVY
-                    " FOREIGN KEY(T_TYPE) REFERENCES ARMY(TERRAIN_TYPE))";
+                    " T_TYPE            INT             NOT NULL)";// 0:LAND, 1:NAVY
+                   // " FOREIGN KEY(T_TYPE) REFERENCES ARMY(TERRAIN_TYPE))";
             stmt.executeUpdate(sql);
 
             sql =  "CREATE TABLE RECRUITMENT" +
@@ -69,7 +69,7 @@ public class initDB {
 
             sql =  "CREATE TABLE ARMY_LEADER" +
                     "(L_ID                  INT," + // LEADER_ID
-                    "LEADER_NAME            TEXT    NOT NULL,"+
+                    "LEADER_NAME            NUMERIC    NOT NULL,"+
                     "RECRUITMENT_DISCOUNT   INT     NOT NULL," +
                     "UPKEEP_DISCOUNT        INT     NOT NULL,"+
                     "L_TYPE                 INT," +
