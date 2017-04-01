@@ -29,6 +29,7 @@ public class initDB {
                     " FOREIGN KEY(P_ID) REFERENCES PLAYERS(PLAYER_ID)," +
                     " FOREIGN KEY(G_ID) REFERENCES GAMES(GAME_ID))";
             stmt.executeUpdate(sql);
+            sql = "CREATE TABLE ARMY";
             stmt.close();
             c.close();
 
