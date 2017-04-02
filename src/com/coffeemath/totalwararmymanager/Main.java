@@ -1,4 +1,4 @@
-package sample;
+package com.coffeemath.totalwararmymanager;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("View/FXMLDocument.fxml"));
         primaryStage.setTitle("Total War Army Manager");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
