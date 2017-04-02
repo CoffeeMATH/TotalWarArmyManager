@@ -16,10 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -30,7 +27,7 @@ public class ChoosePlayerSceneController implements Initializable {
    private Button button1;
 
    @FXML
-   private ListView<TableView<playerRow>> list;
+   private ListView<TableRow<Button>> list;
 
     @FXML
     void handleButtonAction(ActionEvent event) {
@@ -49,25 +46,7 @@ public class ChoosePlayerSceneController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        list = new ListView<>();
-        list.getItems().add(tableOfPlayers());
-    }
 
-    private TableView<playerRow> tableOfPlayers(){
-
-        TableColumn<playerRow, Button> playerCol = new TableColumn<>();
-        playerCol.setMinWidth(200);
-        playerCol.setCellValueFactory(new PropertyValueFactory<>("p"));
-
-        TableColumn<playerRow, Button> delCol = new TableColumn<>();
-        delCol.setMinWidth(200);
-        delCol.setCellValueFactory(new PropertyValueFactory<>("x"));
-
-        TableView<playerRow> table = new TableView<>();
-        table.setItems(loadPlayers());
-        table.getColumns().addAll(playerCol,delCol);
-
-        return table;
     }
 
     private ObservableList<playerRow> loadPlayers(){

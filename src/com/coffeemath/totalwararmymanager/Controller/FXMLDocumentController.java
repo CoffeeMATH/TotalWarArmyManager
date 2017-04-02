@@ -39,7 +39,7 @@ public class FXMLDocumentController implements Initializable {
            //get reference to the button's stage         
            stage=(Stage) button.getScene().getWindow();
            //load up OTHER FXML document
-     root = FXMLLoader.load(getClass().getResource("View/choosePlayerScene.fxml"));
+     root = FXMLLoader.load(getClass().getResource("../View/choosePlayerScene.fxml"));
         //create a new scene with root and set the stage
          Scene scene = new Scene(root);
          stage.setScene(scene);
