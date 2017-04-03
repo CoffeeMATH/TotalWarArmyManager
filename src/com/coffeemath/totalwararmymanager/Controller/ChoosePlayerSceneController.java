@@ -1,57 +1,97 @@
-package com.coffeemath.totalwararmymanager.Controller;/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+package com.coffeemath.totalwararmymanager.Controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
-/**
- * FXML Controller class
- *
- * @author L-LHora
- */
 public class ChoosePlayerSceneController implements Initializable {
 
-   @FXML
-    private Button button1;
-
     @FXML
-    private Label label;
+    private VBox vBox;
 
-    @FXML
-    void handleButtonAction(ActionEvent event) {
-         try{
-             FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("playerName.fxml"));
-             Parent root1 = (Parent) fxmlLoader1.load();
-             Stage stage1 = new Stage();
-             stage1.setScene(new Scene(root1));
-             stage1.initModality(Modality.APPLICATION_MODAL);
-             stage1.initOwner(button1.getScene().getWindow());
-             stage1.showAndWait();
-
-         } catch (IOException ex) {
-           Logger.getLogger(ChoosePlayerSceneController.class.getName()).log(Level.SEVERE, null, ex);
-       }
-    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
+        TableColumn<Player,String> playerCol = new TableColumn<>();
+        playerCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        playerCol.setCellFactory(param -> {return new PlayerCell<>();});
+
+        TableColumn<Player,String> editCol = new TableColumn<>();
+        editCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        editCol.setCellFactory(param -> {return new EditCell<>();});
+
+        TableColumn<Player,String> delCol = new TableColumn<>();
+        delCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        delCol.setCellFactory(param -> {return new DeleteCell<>();});
+
+        TableView<Player> players = new TableView<>();
+        players.setItems(loadPlayers());
+        players.getColumns().addAll(playerCol,editCol,delCol);
+        Pane h = new Pane();
+        h.getChildren().add(new Button("Add Player"));
+        vBox.getChildren().addAll(players,h);
+    }
+
+    private ObservableList<Player> loadPlayers(){
+        ObservableList<Player> players = FXCollections.observableArrayList();
+        players.add(new Player("Aaron"));
+        return players;
+    }
+}
+
+class PlayerCell<Player,String> extends ButtonCell<Player,String>{
+    public PlayerCell(){super();}
+    @Override
+    protected void updateItem(String item, boolean empty) {
+        super.updateItem(item, empty);
+        if(!empty){
+            button.setText(item.toString());
+            button.setOnAction(e -> System.out.println(item));
+        }
+        else{setGraphic(null);setText(null);}
+    }
+}
+
+class EditCell<Player,String> extends ButtonCell<Player,String>{
+    public EditCell(){super("Edit");}
+    @Override
+    protected void updateItem(String item, boolean empty) {
+        super.updateItem(item, empty);
+        if(!empty)
+            button.setOnAction(e -> System.out.println(item+" edited."));
+        else{setGraphic(null);setText(null);}
+    }
+}
+
+class DeleteCell<Player,String> extends ButtonCell<Player,String>{
+    public DeleteCell(){super("Delete");}
+    @Override
+    protected void updateItem(String item, boolean empty) {
+        super.updateItem(item, empty);
+        if(!empty)
+            button.setOnAction(e -> System.out.println(item+" deleted."));
+        else{setGraphic(null);setText(null);}
+    }
 }
