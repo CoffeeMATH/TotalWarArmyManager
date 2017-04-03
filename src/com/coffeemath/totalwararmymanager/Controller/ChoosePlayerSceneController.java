@@ -33,56 +33,25 @@ public class ChoosePlayerSceneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*
-        TableColumn playerCol = new TableColumn();
-        playerCol.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
-        playerCol.setCellFactory(param -> {
-            return new TableCell<Player, String>(){
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if(empty){
-                        setGraphic(null); setText(null);
-                    }
-                    else{
-                        Player player = getTableView().getItems().get(getIndex());
-                        Button playerBtn = new Button(player.getName());
-                        playerBtn.setOnAction(e -> System.out.println(player.getName()));
-                        setGraphic();
-                        setText(null);
-                    }
-                }
-            };
-        });
 
-        TableColumn editCol = new TableColumn();
-        editCol.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
-        editCol.setCellFactory(param -> {
-            return new TableCell<Player, String>(){
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if(empty){
-                        setGraphic(null); setText(null);
-                    }
-                    else{
-                        Player player = getTableView().getItems().get(getIndex());
-                        Button playerBtn = new Button("Edited");
-                        playerBtn.setOnAction(e -> System.out.println(player.getName()+" edited."));
-                        setGraphic(playerBtn);
-                        setText(null);
-                    }
-                }
-            };
-        });*/
-        GraphicTable players = new GraphicTable(new PlayerBtn(), new EditBtn());
+        TableColumn<Player,String> playerCol = new TableColumn<>();
+        playerCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        playerCol.setCellFactory(param -> {return new PlayerCell<>();});
+
+        TableColumn<Player,String> editCol = new TableColumn<>();
+        editCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        editCol.setCellFactory(param -> {return new EditCell<>();});
+
+        TableColumn<Player,String> delCol = new TableColumn<>();
+        delCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        delCol.setCellFactory(param -> {return new DeleteCell<>();});
+
+        TableView<Player> players = new TableView<>();
         players.setItems(loadPlayers());
-        //TableView playerList = new TableView();
-        //playerList.setItems(loadPlayers());
-        //playerList.getColumns().addAll(playerCol,editCol);
+        players.getColumns().addAll(playerCol,editCol,delCol);
         Pane h = new Pane();
         h.getChildren().add(new Button("Add Player"));
-        vBox.getChildren().addAll(h);
+        vBox.getChildren().addAll(players,h);
     }
 
     private ObservableList<Player> loadPlayers(){
@@ -92,38 +61,37 @@ public class ChoosePlayerSceneController implements Initializable {
     }
 }
 
-
-
-class PlayerBtn{
-    private Button playerBtn;
-    public PlayerBtn(Player player){
-        playerBtn = new Button(player.getName());
-        playerBtn.setOnAction(e -> System.out.println(playerBtn.getText()));
-    }
-    public PlayerBtn(){
-        this(new Player("Default"));
-    }
-}
-
-class EditBtn{
-    private Player player;
-    private Button editBtn;
-    public EditBtn(Player player){
-        this.player = player;
-        editBtn = new Button("Edit");
-        editBtn.setOnAction(e -> System.out.println());
-    }
-    public EditBtn(){
-        this(new Player("Default"));
+class PlayerCell<Player,String> extends ButtonCell<Player,String>{
+    public PlayerCell(){super();}
+    @Override
+    protected void updateItem(String item, boolean empty) {
+        super.updateItem(item, empty);
+        if(!empty){
+            button.setText(item.toString());
+            button.setOnAction(e -> System.out.println(item));
+        }
+        else{setGraphic(null);setText(null);}
     }
 }
 
-class Player extends Object{
-    private String name;
-    public Player(String name){
-        this.name = name;
+class EditCell<Player,String> extends ButtonCell<Player,String>{
+    public EditCell(){super("Edit");}
+    @Override
+    protected void updateItem(String item, boolean empty) {
+        super.updateItem(item, empty);
+        if(!empty)
+            button.setOnAction(e -> System.out.println(item+" edited."));
+        else{setGraphic(null);setText(null);}
     }
-    public String getName(){
-        return this.name;
+}
+
+class DeleteCell<Player,String> extends ButtonCell<Player,String>{
+    public DeleteCell(){super("Delete");}
+    @Override
+    protected void updateItem(String item, boolean empty) {
+        super.updateItem(item, empty);
+        if(!empty)
+            button.setOnAction(e -> System.out.println(item+" deleted."));
+        else{setGraphic(null);setText(null);}
     }
 }
