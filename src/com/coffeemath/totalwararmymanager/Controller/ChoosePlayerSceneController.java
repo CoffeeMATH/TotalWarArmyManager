@@ -3,6 +3,7 @@ package com.coffeemath.totalwararmymanager.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.coffeemath.totalwararmymanager.Controller.Toolkit.Functions;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicAction;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicColumn;
 import javafx.collections.FXCollections;
@@ -14,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class ChoosePlayerSceneController implements Initializable {
+    private Functions functions = new Functions();
     private GraphicAction<String> playerCell = item -> {
         Button playerBtn = new Button(item.toString());
         playerBtn.setOnAction(e -> System.out.println(item));
@@ -52,6 +54,7 @@ public class ChoosePlayerSceneController implements Initializable {
     private ObservableList<Player> loadPlayers(){
         ObservableList<Player> players = FXCollections.observableArrayList();
         players.add(new Player("Aaron"));
+        players.add(new Player("Wendy"));
         return players;
     }
 }

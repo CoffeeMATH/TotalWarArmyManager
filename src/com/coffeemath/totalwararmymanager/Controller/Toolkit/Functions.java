@@ -22,7 +22,7 @@ public class Functions {
         stage.show();
     }
     private Parent loadPath(String path) throws IOException{
-        return FXMLLoader.load(getClass().getResource(path));
+        return FXMLLoader.load(getClass().getResource("../"+path));
     }
     public void goToScene(Stage currentWindow, String path) throws IOException{
         currentWindow.setScene(new Scene(loadPath(path)));
