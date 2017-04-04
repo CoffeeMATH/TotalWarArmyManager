@@ -24,18 +24,15 @@ import java.lang.*;
  */
 public class FXMLDocumentController implements Initializable {
     Functions functions = new Functions();
-    @FXML
-    private ImageView image;
-
-    @FXML
-    private Button button;
+    @FXML private ImageView image;
+    @FXML private Button button;
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException{
         Stage stage; 
         Parent root;
         if(event.getSource()==button){
-            functions.goToScene((Stage)button.getScene().getWindow(),"../View/choosePlayerScene.fxml");
+            functions.goToScene((Stage)button.getScene().getWindow(),"../../View/choosePlayerScene.fxml");
        }
     }
     @Override

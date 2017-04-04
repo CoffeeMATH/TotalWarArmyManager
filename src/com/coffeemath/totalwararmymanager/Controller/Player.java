@@ -5,10 +5,13 @@ package com.coffeemath.totalwararmymanager.Controller;
  */
 public class Player{
     private String name;
+    private Player player;
     public Player(String name){
+        player = this;
         this.name = name;
     }
     public String getName(){
         return this.name;
     }
+    public Player getPlayer(){return this; }
 }

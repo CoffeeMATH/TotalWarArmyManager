@@ -7,7 +7,13 @@ package com.coffeemath.totalwararmymanager.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -15,6 +21,12 @@ import javafx.fxml.Initializable;
  * @author L-LHora
  */
 public class PlayerNameController implements Initializable {
+    @FXML private TextArea nameField;
+
+    @FXML
+    public Player addThePlayer(ActionEvent event){
+        return new Player(nameField.getText());
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

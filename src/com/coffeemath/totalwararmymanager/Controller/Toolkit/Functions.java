@@ -1,9 +1,12 @@
 package com.coffeemath.totalwararmymanager.Controller.Toolkit;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 
@@ -22,9 +25,14 @@ public class Functions {
         stage.show();
     }
     private Parent loadPath(String path) throws IOException{
-        return FXMLLoader.load(getClass().getResource("../"+path));
+        return FXMLLoader.load(getClass().getResource(path));
     }
     public void goToScene(Stage currentWindow, String path) throws IOException{
         currentWindow.setScene(new Scene(loadPath(path)));
+    }
+    public Button activatedButton(String label, EventHandler<ActionEvent> buttonAction){
+        Button button = new Button(label);
+        button.setOnAction(buttonAction);
+        return button;
     }
 }
