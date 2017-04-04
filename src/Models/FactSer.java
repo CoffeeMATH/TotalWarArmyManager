@@ -9,7 +9,7 @@ public class FactSer{
         Scanner scan = new Scanner(System.in);
         Faction f = new Faction();
         System.out.println("Input faction name:");
-        f.f_name = scan.next();
+          f.f_name = scan.next();
         System.out.println("Input faction Recruitment Discount:");
         f.discountR = scan.nextInt();
         System.out.println("Input faction Upkeep Discount:");

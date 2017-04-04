@@ -26,7 +26,7 @@ public class DBOper {
 
             String sql;
             String name;
-            int factID, UC, RC, ttype, i = 157;
+            int factID, UC, RC, ttype, i = 227;
             String yesorno = "y";
             while (yesorno.equals("y")) {
                 System.out.println("Unit Name:");
