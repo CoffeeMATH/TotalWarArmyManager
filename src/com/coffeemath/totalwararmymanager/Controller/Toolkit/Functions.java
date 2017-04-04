@@ -1,9 +1,10 @@
-package com.coffeemath.totalwararmymanager.Controller;
+package com.coffeemath.totalwararmymanager.Controller.Toolkit;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,5 +27,4 @@ public class Functions {
     public void goToScene(Stage currentWindow, String path) throws IOException{
         currentWindow.setScene(new Scene(loadPath(path)));
     }
-
 }
