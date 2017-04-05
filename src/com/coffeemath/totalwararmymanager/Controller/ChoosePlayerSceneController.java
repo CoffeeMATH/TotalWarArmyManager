@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ChoosePlayerSceneController implements Initializable {
 
@@ -42,9 +43,14 @@ public class ChoosePlayerSceneController implements Initializable {
 
         TableView<Player> players = new TableView<>();
         players.setItems(loadPlayers());
+
         players.getColumns().addAll(playerCol,editCol,delCol);
+        Button addPlayerBtn = new Button("Add Player");
+        addPlayerBtn.setOnAction(e -> {
+
+        });
         Pane h = new Pane();
-        h.getChildren().add(new Button("Add Player"));
+        h.getChildren().add(addPlayerBtn);
         vBox.getChildren().addAll(players,h);
     }
 

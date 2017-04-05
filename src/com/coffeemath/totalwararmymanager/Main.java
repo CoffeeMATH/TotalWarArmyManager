@@ -1,5 +1,6 @@
 package com.coffeemath.totalwararmymanager;
 
+import com.coffeemath.totalwararmymanager.Controller.Functions;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,13 +8,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+    private Functions functions = new Functions();
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("View/FXMLDocument.fxml"));
-        primaryStage.setTitle("Total War Army Manager");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        functions.openNewWindow(primaryStage,"Total War Army Manager","../View/FXMLDocument.fxml");
     }
     public static void main(String[] args) {
         launch(args);
