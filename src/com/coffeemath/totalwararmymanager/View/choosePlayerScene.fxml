@@ -4,11 +4,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fx:controller="com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController" fx:id="scroll" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.112">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="${scroll.prefHeight}" prefWidth="${scroll.prefWidth}">
-         <children>
-            <VBox fx:id="vBox" layoutX="50.0" prefHeight="${scroll.prefHeight}" prefWidth="${scroll.prefWidth}"  />
-         </children></AnchorPane>
-  </content>
-</ScrollPane>
+
+<VBox fx:id="vBox" layoutX="50.0" prefHeight="600" prefWidth="700" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController"/>
+
