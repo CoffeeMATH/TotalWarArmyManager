@@ -1,4 +1,4 @@
-package com.coffeemath.totalwararmymanager.Controller;
+package com.coffeemath.totalwararmymanager.Controller.TestModels;
 
 /**
  * Created by Alcoseba on 4/4/2017.
