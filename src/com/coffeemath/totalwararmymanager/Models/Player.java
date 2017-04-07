@@ -3,7 +3,14 @@ package com.coffeemath.totalwararmymanager.Models;
 import java.util.ArrayList;
 
 public class Player{
-    public static String p_name;
+    public String p_name;
+    public Player player;
     private int p_id;
-    public static ArrayList<Game> p_games;
+    public Player(String name){
+        player = this;
+        this.p_name = name;
+    }
+    public String getName(){return this.p_name;}
+    public Player getPlayer(){return this;}
+    public Games p_games;
 }
