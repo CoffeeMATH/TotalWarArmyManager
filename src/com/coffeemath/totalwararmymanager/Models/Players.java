@@ -14,8 +14,8 @@ public class Players {
     private Connection c;
     private Statement stmt;
 
-   // public Players{
-/*
+    public Players(){
+
         try{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
@@ -23,9 +23,20 @@ public class Players {
 
             stmt = c.createStatement();
             ResultSet pset = stmt.executeQuery("SELECT * FROM PLAYERS");
-
+            while ( pset.next() ){
+                Player temp = new Player();
+                temp.p_id = pset.getInt("PLAYER_ID");
+                temp.p_name = pset.getString("PLAYER_NAME");
+                PlayerList.add(temp);
+            }
+            pset.close();
+            stmt.close();
+            c.close();
+        } catch(Exception e){
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
     }
-    public void addPlayer{}
-*/
+    //public void addPlayer{}
+
 }
