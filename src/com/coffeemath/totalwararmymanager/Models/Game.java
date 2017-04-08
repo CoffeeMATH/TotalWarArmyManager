@@ -1,6 +1,6 @@
 package com.coffeemath.totalwararmymanager.Models;
 
-public class Game{
+public class   Game{
     public String g_name;
     public Game game;
     private int g_id;
