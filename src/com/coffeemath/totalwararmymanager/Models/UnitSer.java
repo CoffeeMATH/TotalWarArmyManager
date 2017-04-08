@@ -1,4 +1,4 @@
-package Models;
+package com.coffeemath.totalwararmymanager.Models;
 import java.io.*;
 import java.util.Scanner;
 /**

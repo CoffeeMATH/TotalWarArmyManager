@@ -1,4 +1,4 @@
-package Models;
+package com.coffeemath.totalwararmymanager.Models;
 
 public class Game{
     public static String g_name;

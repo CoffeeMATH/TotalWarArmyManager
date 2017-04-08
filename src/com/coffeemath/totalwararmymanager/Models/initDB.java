@@ -1,4 +1,4 @@
-package Models;
+package com.coffeemath.totalwararmymanager.Models;
 
 import java.sql.*;
 public class initDB {

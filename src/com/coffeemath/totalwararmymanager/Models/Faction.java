@@ -1,4 +1,4 @@
-package Models;
+package com.coffeemath.totalwararmymanager.Models;
 
 public class Faction implements java.io.Serializable {
     public String f_name;
