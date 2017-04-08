@@ -1,9 +1,92 @@
 package com.coffeemath.totalwararmymanager.Models;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 /**
  * Created by Paul on 31/03/2017.
  */
 public class Games {
+    public boolean addGame(String gname){
+        try{
+            Connection c = null;
+            Statement stmt = null;
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
+            c.setAutoCommit(false);
+
+            stmt=c.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gname +";" );
+            if(!rs.wasNull())
+                return false;
+            String sql = "INSERT INTO GAMES (GAME_NAME)" + "VALUES (" + gname + ");";
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.commit();
+            c.close();
+            return true;
+
+
+        }catch(Exception e){
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        return false;
+    }
+
+    public void deleteGame(String gname){
+        try{
+            Connection c = null;
+            Statement stmt = null;
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
+            c.setAutoCommit(false);
+
+            stmt=c.createStatement();
+            String sql = "DELETE FROM GAMES WHERE GAME_NAME = " +  gname + ";";
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.commit();
+            c.close();
+
+        }catch(Exception e){
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+
+    }
+    public boolean updateGame(String gnameO, String gnameN){
+        try{
+            Connection c = null;
+            Statement stmt = null;
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
+            c.setAutoCommit(false);
+
+            stmt=c.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gnameN +";" );
+            if(!rs.wasNull())
+                return false;
+            String sql = "UPDATE GAMES set GAME_NAME =" +gnameN +"WHERE GAME_NAME =" +gnameO+ ";";
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.commit();
+            c.close();
+            return true;
+
+
+        }catch(Exception e){
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        return false;
+    }
+
 }
 
 

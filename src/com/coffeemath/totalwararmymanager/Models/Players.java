@@ -73,7 +73,7 @@ public class Players {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String sql = "DELETE from COMPANY where PLAYER_NAME =" + pname + ";";
+            String sql = "DELETE from PLAYERS where PLAYER_NAME =" + pname + ";";
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -99,9 +99,9 @@ public class Players {
             stmt = c.createStatement();
             ResultSet rs = stmt.executeQuery( "SELECT * FROM PLAYERS WHERE PLAYER_NAME =" + pnameN +";" );
             if(!rs.wasNull())return false;
-            else {
-                String sql = "UPDATE PLAYERS set PLAYER_NAME =" + pnameN + "WHERE PLAYER_NAME =" + pnameO + ";";
-            }
+
+            String sql = "UPDATE PLAYERS set PLAYER_NAME =" + pnameN + "WHERE PLAYER_NAME =" + pnameO + ";";
+
             stmt.executeUpdate(sql);
             stmt.close();
             c.commit();
@@ -111,5 +111,6 @@ public class Players {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
+        return false;
     }
 }
