@@ -13,6 +13,6 @@ public class Army {
     }
     public String getName(){return this.a_name;}
     public Army getArmy(){return this;}
-    public Units a_units;
+    //public Units a_units;
 
 }
