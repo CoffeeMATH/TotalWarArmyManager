@@ -8,16 +8,17 @@ import javafx.collections.ObservableList;
 public class Player{
     private String name;
     private Player player;
-    private ObservableList<Game> games;
+    private Scroll<Game> games;
     public Player(String name){
         player = this;
+        games = new Scroll<>();
         this.name = name;
     }
     public String getName(){
         return this.name;
     }
     public Player getPlayer(){return this; }
-    public ObservableList<Game> getGames() {
+    public Scroll<Game> getGames() {
         return games;
     }
 }

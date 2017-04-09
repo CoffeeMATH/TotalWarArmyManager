@@ -21,19 +21,13 @@ import javafx.stage.Stage;
  *
  * @author L-LHora
  */
-public class PlayerNameController implements Initializable {
+public class PlayerNameController {
     @FXML private TextArea nameField;
     @FXML private AnchorPane window;
 
     @FXML
     public void addThePlayer(ActionEvent event){
-        Lists.Players.add(new Player(nameField.getText()));
+        ChoosePlayerSceneController.playerScroll.getItems().add(new Player(nameField.getText()));
         ((Stage)window.getScene().getWindow()).close();
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
 }
