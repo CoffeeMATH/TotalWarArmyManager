@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.coffeemath.totalwararmymanager.Controller.TestModels.Lists;
 import com.coffeemath.totalwararmymanager.Controller.TestModels.Player;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.Functions;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicAction;

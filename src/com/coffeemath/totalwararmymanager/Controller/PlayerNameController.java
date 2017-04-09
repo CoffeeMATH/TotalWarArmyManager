@@ -8,7 +8,6 @@ package com.coffeemath.totalwararmymanager.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.coffeemath.totalwararmymanager.Controller.TestModels.Lists;
 import com.coffeemath.totalwararmymanager.Controller.TestModels.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
