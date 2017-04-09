@@ -5,24 +5,24 @@
  */
 package com.coffeemath.totalwararmymanager.Controller;
 
-import javafx.fxml.Initializable;
+import com.coffeemath.totalwararmymanager.Controller.TestModels.Game;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
  *
  * @author L-LHora
  */
-public class gameNameController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+public class gameNameController {
+    @FXML private TextArea gameField;
+    @FXML
+    private void addTheGame(ActionEvent event){
+        ChoosePlayerSceneController.playerScroll.getCursor().getGames().getItems().add(new Game(gameField.getText()));
+        ((Stage)gameField.getScene().getWindow()).close();
+    }
     
 }

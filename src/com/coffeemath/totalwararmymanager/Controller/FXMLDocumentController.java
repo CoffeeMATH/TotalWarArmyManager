@@ -32,7 +32,7 @@ public class FXMLDocumentController implements Initializable {
         Stage stage; 
         Parent root;
         if(event.getSource()==button){
-            functions.goToScene(button,"View/MainScenes/choosePlayerScene.fxml");
+            functions.goToScene(button,"View/Scenes/MainScenes/choosePlayerScene.fxml");
        }
     }
     @Override

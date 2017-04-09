@@ -15,19 +15,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class ChoosePlayerSceneController implements Initializable{
-    /* Scene Elements */
-    @FXML private VBox vBox;
-    private Button addPlayerBtn = new Button("Add Player");;
-    private TableView<Player> players = new TableView<>();
+    @FXML private Button addPlayerBtn;
+    @FXML private Button backBtn;
+    @FXML private TableView<Player> players;
 
-    /* List of Players */
     public static Scroll<Player> playerScroll = new Scroll<>();
 
-    /* Functionalities */
     private Functions functions = new Functions();
     private GraphicAction<Player> playerCell = item -> functions.activatedButton(item.getName(),e -> {
         playerScroll.setCursor(item);
-        functions.goToScene(vBox,"View/MainScenes/chooseGameScene.fxml");
+        functions.goToScene(addPlayerBtn,"View/Scenes/MainScenes/chooseGameScene.fxml");
     });
     private GraphicAction<Player> editCell = item -> functions.activatedButton("Edit",e -> System.out.println(item.getName() + " edited."));
     private GraphicAction<Player> delCell = item -> functions.activatedButton("Delete",e -> playerScroll.getItems().remove(item));
@@ -39,9 +36,7 @@ public class ChoosePlayerSceneController implements Initializable{
         players.getColumns().addAll(new GraphicColumn<>("player",playerCell),
                                     new GraphicColumn<>("player",editCell),
                                     new GraphicColumn<>("player",delCell));
-        addPlayerBtn.setOnAction(e -> functions.openNewWindow("Add Player", "View/CreateScenes/playerName.fxml"));
-        Pane h = new Pane();
-        h.getChildren().add(addPlayerBtn);
-        vBox.getChildren().addAll(players,h);
+        addPlayerBtn.setOnAction(e -> functions.openNewWindow("Add Player", "View/Scenes/CreateScenes/playerName.fxml"));
+        backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/FXMLDocument.fxml"));
     }
 }

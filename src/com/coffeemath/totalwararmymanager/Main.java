@@ -10,7 +10,7 @@ public class Main extends Application {
     private Functions functions = new Functions();
     @Override
     public void start(Stage primaryStage) throws Exception {
-        functions.openNewWindow(primaryStage,"Total War Army Manager","View/MainScenes/FXMLDocument.fxml");
+        functions.openNewWindow(primaryStage,"Total War Army Manager","View/Scenes/MainScenes/FXMLDocument.fxml");
     }
     public static void main(String[] args) {
         launch(args);
