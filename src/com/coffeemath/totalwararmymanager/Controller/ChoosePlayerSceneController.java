@@ -11,8 +11,6 @@ import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicColumn;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 public class ChoosePlayerSceneController implements Initializable{
     @FXML private Button addPlayerBtn;
@@ -26,9 +24,12 @@ public class ChoosePlayerSceneController implements Initializable{
         playerScroll.setCursor(item);
         functions.goToScene(addPlayerBtn,"View/Scenes/MainScenes/chooseGameScene.fxml");
     });
-    private GraphicAction<Player> editCell = item -> functions.activatedButton("Edit",e -> System.out.println(item.getName() + " edited."));
+    private GraphicAction<Player> editCell = item -> functions.activatedButton("Edit",e -> {
+        playerScroll.setCursor(item);
+        functions.openTemporaryWindow("Edit Player","View/Scenes/EditScenes/editPlayer.fxml");
+        players.refresh();
+    });
     private GraphicAction<Player> delCell = item -> functions.activatedButton("Delete",e -> playerScroll.getItems().remove(item));
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

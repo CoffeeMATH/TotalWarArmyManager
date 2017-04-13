@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.coffeemath.totalwararmymanager.Controller;
+package com.coffeemath.totalwararmymanager.Controller.PopUps;
 
+import com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController;
 import com.coffeemath.totalwararmymanager.Controller.TestModels.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

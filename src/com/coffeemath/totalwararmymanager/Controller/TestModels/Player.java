@@ -18,7 +18,6 @@ public class Player{
         return this.name;
     }
     public Player getPlayer(){return this; }
-    public Scroll<Game> getGames() {
-        return games;
-    }
+    public Scroll<Game> getGames() {return games;}
+    public void setName(String name) {this.name = name;}
 }

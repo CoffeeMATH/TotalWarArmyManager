@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="window" id="AnchorPane" prefHeight="150.0" prefWidth="250.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.coffeemath.totalwararmymanager.Controller.PopUps.EditPlayerController">
+   <children>
+      <TextArea fx:id="nameField" layoutX="28.0" layoutY="59.0" prefHeight="33.0" prefWidth="194.0" />
+      <Button fx:id="addButton" onAction="#editThePlayer" layoutX="91.0" layoutY="98.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="61.0" text="Done">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="28.0" layoutY="14.0" text="Enter Name:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
