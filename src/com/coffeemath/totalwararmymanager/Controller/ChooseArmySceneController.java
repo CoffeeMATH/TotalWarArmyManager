@@ -28,20 +28,18 @@ public class ChooseArmySceneController implements Initializable {
     private GraphicAction<Army> armyCell = item -> functions.activatedButton(item.getName(),e -> {
         armyScroll.setCursor(item);
     });
-    private GraphicAction<Army> editCell = item -> functions.activatedButton("Edit",e -> {
-        armyScroll.setCursor(item);
-    });
     private GraphicAction<Army> delCell = item -> functions.activatedButton("Delete",e -> armyScroll.getItems().remove(item));
     private GraphicAction<String> typeCell = item -> {Label l = new Label(); l.setText(item); return l;};
+    private GraphicAction<String> genCell = item -> {Label l = new Label(); l.setText(item); return l;};
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         armyScroll = ChooseGameSceneController.gameScroll.getCursor().getArmies();
         armies.setItems(armyScroll.getItems());
         armies.getColumns().addAll(new GraphicColumn<>("army",armyCell),
-                new GraphicColumn<>("army",editCell),
-                new GraphicColumn<>("army",delCell),
-                new GraphicColumn<>("type",typeCell));
+                new GraphicColumn<>("type",typeCell),
+                new GraphicColumn<>("genName",genCell),
+                new GraphicColumn<>("army",delCell));
         addBtn.setOnAction(e -> functions.openNewWindow("Add Army","View/Scenes/CreateScenes/armyName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/chooseGameScene.fxml"));
     }
