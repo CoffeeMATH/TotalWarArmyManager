@@ -34,9 +34,13 @@ public class ChoosePlayerSceneController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         players.setItems(playerScroll.getItems());
-        players.getColumns().addAll(new GraphicColumn<>("player",playerCell),
-                                    new GraphicColumn<>("player",editCell),
-                                    new GraphicColumn<>("player",delCell));
+        GraphicColumn<Player,Player> playerCol = new GraphicColumn<>("player",playerCell);
+        GraphicColumn<Player,Player> editCol = new GraphicColumn<>("player",editCell);
+        GraphicColumn<Player,Player> delCol = new GraphicColumn<>("player",delCell);
+        playerCol.setMinWidth(400); playerCol.setMaxWidth(400);
+        editCol.setMinWidth(100); editCol.setMaxWidth(100);
+        delCol.setMinWidth(100); editCol.setMaxWidth(100);
+        players.getColumns().addAll(playerCol,editCol,delCol);
         addPlayerBtn.setOnAction(e -> functions.openNewWindow("Add Player", "View/Scenes/CreateScenes/playerName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/FXMLDocument.fxml"));
     }

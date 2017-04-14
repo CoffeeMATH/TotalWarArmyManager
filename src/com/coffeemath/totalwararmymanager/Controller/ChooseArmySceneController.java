@@ -36,10 +36,15 @@ public class ChooseArmySceneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         armyScroll = ChooseGameSceneController.gameScroll.getCursor().getArmies();
         armies.setItems(armyScroll.getItems());
-        armies.getColumns().addAll(new GraphicColumn<>("army",armyCell),
-                new GraphicColumn<>("type",typeCell),
-                new GraphicColumn<>("genName",genCell),
-                new GraphicColumn<>("army",delCell));
+        GraphicColumn<Army,Army> armyCol = new GraphicColumn<>("army",armyCell);
+        GraphicColumn<Army,String> typeCol =  new GraphicColumn<>("type",typeCell);
+        GraphicColumn<Army,String> genCol =  new GraphicColumn<>("genName",genCell);
+        GraphicColumn<Army,Army> delCol = new GraphicColumn<>("army",delCell);
+        armyCol.setMinWidth(250); armyCol.setMaxWidth(250);
+        typeCol.setMinWidth(50); typeCol.setMaxWidth(50);
+        genCol.setMinWidth(100); genCol.setMaxWidth(100);
+        delCol.setMinWidth(100); delCol.setMaxWidth(100);
+        armies.getColumns().addAll(armyCol,typeCol,genCol,delCol);
         addBtn.setOnAction(e -> functions.openNewWindow("Add Army","View/Scenes/CreateScenes/armyName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/chooseGameScene.fxml"));
     }
