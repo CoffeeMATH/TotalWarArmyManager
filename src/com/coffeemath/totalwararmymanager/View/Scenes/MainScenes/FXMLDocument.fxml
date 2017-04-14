@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Button ?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-
-<AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.FXMLDocumentController">
+<AnchorPane styleClass="root" stylesheets="@../../StyleSheets/FXMLDocumentCSS.css" id="AnchorPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.FXMLDocumentController">
     <children>
         <Button fx:id="button" layoutX="225" layoutY="180.0" onAction="#handleButtonAction" text="Choose Player">
          <font>
