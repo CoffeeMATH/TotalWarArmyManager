@@ -21,6 +21,8 @@ public class ChooseArmySceneController implements Initializable {
     @FXML private TableView<Army> armies;
     @FXML private Button addBtn;
     @FXML private Button backBtn;
+    @FXML private Label playerLabel;
+    @FXML private Label gameLabel;
 
     public static Scroll<Army> armyScroll;
 
@@ -36,15 +38,17 @@ public class ChooseArmySceneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         armyScroll = ChooseGameSceneController.gameScroll.getCursor().getArmies();
         armies.setItems(armyScroll.getItems());
+        playerLabel.setText(ChoosePlayerSceneController.playerScroll.getCursor().getName());
+        gameLabel.setText(ChooseGameSceneController.gameScroll.getCursor().getName());
         GraphicColumn<Army,Army> armyCol = new GraphicColumn<>("army",armyCell);
         GraphicColumn<Army,String> typeCol =  new GraphicColumn<>("type",typeCell);
         GraphicColumn<Army,String> genCol =  new GraphicColumn<>("genName",genCell);
         GraphicColumn<Army,Army> delCol = new GraphicColumn<>("army",delCell);
-        armyCol.setMinWidth(250); armyCol.setMaxWidth(250);
-        typeCol.setMinWidth(50); typeCol.setMaxWidth(50);
-        genCol.setMinWidth(100); genCol.setMaxWidth(100);
-        delCol.setMinWidth(100); delCol.setMaxWidth(100);
-        armies.getColumns().addAll(armyCol,typeCol,genCol,delCol);
+        armyCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.4));
+        genCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.3));
+        typeCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.15));
+        delCol.prefWidthProperty().bind(typeCol.prefWidthProperty());
+        armies.getColumns().addAll(armyCol,genCol,typeCol,delCol);
         addBtn.setOnAction(e -> functions.openNewWindow("Add Army","View/Scenes/CreateScenes/armyName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/chooseGameScene.fxml"));
     }

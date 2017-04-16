@@ -8,15 +8,19 @@ import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicColumn;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChooseGameSceneController implements Initializable {
+    @FXML private VBox root;
     @FXML private TableView<Game> games;
     @FXML private Button addBtn;
     @FXML private Button backBtn;
+    @FXML private Label playerLabel;
 
     public static Scroll<Game> gameScroll;
 
@@ -36,12 +40,14 @@ public class ChooseGameSceneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         gameScroll = ChoosePlayerSceneController.playerScroll.getCursor().getGames();
         games.setItems(gameScroll.getItems());
+        games.prefHeightProperty().bind(root.widthProperty().multiply(0.925));
+        playerLabel.setText(ChoosePlayerSceneController.playerScroll.getCursor().getName());
         GraphicColumn<Game,Game> gameCol = new GraphicColumn<>("game",gameCell);
         GraphicColumn<Game,Game> editCol = new GraphicColumn<>("game",editCell);
         GraphicColumn<Game,Game> delCol = new GraphicColumn<>("game",delCell);
-        gameCol.setMinWidth(400); gameCol.setMaxWidth(400);
-        editCol.setMinWidth(100); editCol.setMaxWidth(100);
-        delCol.setMinWidth(100); editCol.setMaxWidth(100);
+        gameCol.prefWidthProperty().bind(games.widthProperty().multiply(0.7));
+        editCol.prefWidthProperty().bind(games.widthProperty().multiply(0.15));
+        delCol.prefWidthProperty().bind(games.widthProperty().multiply(0.15));
         games.getColumns().addAll(gameCol,editCol,delCol);
         addBtn.setOnAction(e -> functions.openNewWindow("Add Game","View/Scenes/CreateScenes/gameName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/choosePlayerScene.fxml"));

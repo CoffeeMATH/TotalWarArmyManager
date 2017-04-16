@@ -9,8 +9,14 @@ import com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController
 import com.coffeemath.totalwararmymanager.Controller.TestModels.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 /**
@@ -18,12 +24,20 @@ import javafx.stage.Stage;
  *
  * @author L-LHora
  */
-public class gameNameController {
+public class gameNameController implements Initializable {
     @FXML private TextArea gameField;
+    @FXML private Button addGame;
     @FXML
-    private void addTheGame(ActionEvent event){
+    private void submit(){
         ChoosePlayerSceneController.playerScroll.getCursor().getGames().getItems().add(new Game(gameField.getText()));
         ((Stage)gameField.getScene().getWindow()).close();
     }
-    
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        addGame.setOnAction(e -> submit());
+        gameField.setOnKeyPressed(e -> {
+            if(e.getCode() == KeyCode.ENTER) submit();
+        });
+    }
 }

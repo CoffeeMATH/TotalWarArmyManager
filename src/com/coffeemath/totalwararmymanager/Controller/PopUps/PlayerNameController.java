@@ -13,7 +13,9 @@ import com.coffeemath.totalwararmymanager.Controller.TestModels.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -22,12 +24,20 @@ import javafx.stage.Stage;
  *
  * @author L-LHora
  */
-public class PlayerNameController {
+public class PlayerNameController implements Initializable {
     @FXML private TextArea nameField;
     @FXML private AnchorPane window;
+    @FXML private Button addButton;
 
-    @FXML
-    public void addThePlayer(ActionEvent event){
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        addButton.setOnAction(e -> submit());
+        nameField.setOnKeyPressed(e -> {
+            if(e.getCode() == KeyCode.ENTER) submit();
+        });
+    }
+    private void submit(){
         ChoosePlayerSceneController.playerScroll.getItems().add(new Player(nameField.getText()));
         ((Stage)window.getScene().getWindow()).close();
     }
