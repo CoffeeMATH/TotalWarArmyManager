@@ -38,7 +38,6 @@ public class Games{
             System.exit(0);
         }
     }
-public class Games {
     public boolean addGame(String gname){
         try{
             Connection c = null;
