@@ -24,9 +24,9 @@ public class Players {
             stmt = c.createStatement();
             ResultSet pset = stmt.executeQuery("SELECT * FROM PLAYERS");
             while ( pset.next() ){
-                Player temp = new Player();
-                temp.p_id = pset.getInt("PLAYER_ID");
-                temp.p_name = pset.getString("PLAYER_NAME");
+                int pID = pset.getInt("PLAYER_ID");
+                String pName = pset.getString("PLAYER_NAME");
+                Player temp = new Player(pName, pID);
                 PlayerList.add(temp);
             }
             pset.close();
