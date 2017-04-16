@@ -7,6 +7,7 @@ public class Game{
     public static Faction g_fact;
 
     public Game(String gname, int gID){
+
         game = this;
         this.g_name = gname;
         this.g_id = gID;

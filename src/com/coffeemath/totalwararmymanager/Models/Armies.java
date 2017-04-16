@@ -29,7 +29,7 @@ public class Armies {
                 sql = "SELECT * FROM ARMY WHERE ARMY_ID = " + aID;
                 ResultSet army = stmt.executeQuery(sql);
                 army.next();
-                String aName = army.getNString("ARMY_NAME");
+                String aName = army.getString("ARMY_NAME");
                 Army temp = new Army(aName, aID);
                 ArmyList.add(temp);
             }

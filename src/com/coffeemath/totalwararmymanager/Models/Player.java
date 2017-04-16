@@ -7,6 +7,7 @@ public class Player{
     public Player player;
     private int p_id;
     public Player(String pname, int pID){
+
         player = this;
         this.p_name = pname;
         this.p_id = pID;
