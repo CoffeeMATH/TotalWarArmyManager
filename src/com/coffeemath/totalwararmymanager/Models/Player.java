@@ -15,5 +15,6 @@ public class Player{
     }
     public String getName(){return this.p_name;}
     public Player getPlayer(){return this;}
+    public int getId(){return p_id;}
     public Games p_games;
 }

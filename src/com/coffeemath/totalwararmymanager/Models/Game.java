@@ -1,7 +1,5 @@
 package com.coffeemath.totalwararmymanager.Models;
 
-import java.sql.*;
-
 public class Game{
     public String g_name;
     public Game game;
