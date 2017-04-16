@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:controller="com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="root" fx:controller="com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="players" prefHeight="370.0" prefWidth="600.0" />
+      <TableView fx:id="players" prefHeight="370" prefWidth="600.0" />
       <HBox prefHeight="44.0" prefWidth="200.0">
          <children>
             <Button fx:id="addPlayerBtn" mnemonicParsing="false" text="Add Player" />

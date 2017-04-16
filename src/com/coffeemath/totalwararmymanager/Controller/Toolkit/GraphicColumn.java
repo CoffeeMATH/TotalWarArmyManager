@@ -1,5 +1,6 @@
 package com.coffeemath.totalwararmymanager.Controller.Toolkit;
 
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 

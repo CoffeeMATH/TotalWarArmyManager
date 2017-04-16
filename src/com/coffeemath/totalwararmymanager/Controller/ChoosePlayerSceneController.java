@@ -11,8 +11,10 @@ import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicColumn;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 
 public class ChoosePlayerSceneController implements Initializable{
+    @FXML private VBox root;
     @FXML private Button addPlayerBtn;
     @FXML private Button backBtn;
     @FXML private TableView<Player> players;
@@ -34,12 +36,13 @@ public class ChoosePlayerSceneController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         players.setItems(playerScroll.getItems());
+        players.prefHeightProperty().bind(root.heightProperty().multiply(0.925));
         GraphicColumn<Player,Player> playerCol = new GraphicColumn<>("player",playerCell);
         GraphicColumn<Player,Player> editCol = new GraphicColumn<>("player",editCell);
         GraphicColumn<Player,Player> delCol = new GraphicColumn<>("player",delCell);
-        playerCol.setMinWidth(400); playerCol.setMaxWidth(400);
-        editCol.setMinWidth(100); editCol.setMaxWidth(100);
-        delCol.setMinWidth(100); editCol.setMaxWidth(100);
+        playerCol.prefWidthProperty().bind(players.widthProperty().multiply(0.7));
+        editCol.prefWidthProperty().bind(players.widthProperty().multiply(0.15));
+        delCol.prefWidthProperty().bind(players.widthProperty().multiply(0.15));
         players.getColumns().addAll(playerCol,editCol,delCol);
         addPlayerBtn.setOnAction(e -> functions.openNewWindow("Add Player", "View/Scenes/CreateScenes/playerName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/FXMLDocument.fxml"));
