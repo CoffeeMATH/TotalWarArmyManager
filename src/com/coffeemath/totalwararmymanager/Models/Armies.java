@@ -1,6 +1,7 @@
 package com.coffeemath.totalwararmymanager.Models;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.shape.ObservableFaceArray;
 
 import java.sql.Connection;
@@ -12,13 +13,13 @@ import java.sql.Statement;
  * Created by John Michael on 31/03/2017.
  */
 public class Armies {
-    public static ObservableList<Army>  ArmyList = FXCollections.observableArrayList();
+    public static ObservableList<Army> ArmyList = FXCollections.observableArrayList();
     private Connection c;
     private Statement stmt;
 
 
 
-    public bolean addArmy(String army_name){
+    public boolean addArmy(String army_name){
 
         try {
             Connection c = null;
@@ -64,7 +65,7 @@ public class Armies {
         }
     }
 
-    public bolean updateArmy(String army_name, String new_armyname){
+    public boolean updateArmy(String army_name, String new_armyname){
         try {
             Connection c = null;
             Statement stmt = null;
