@@ -35,6 +35,8 @@ public class Armies {
             stmt.close();
             c.commit();
             c.close();
+
+
             return true;
         }catch (Exception e){
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -53,7 +55,7 @@ public class Armies {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String sql = "DELETE from ARMY where ARMY_NAME = " +  army_name +";" ;
+            String  sql = "DELETE from ARMY where ARMY_NAME = " +  army_name +";" ;
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -91,6 +93,4 @@ public class Armies {
         }
         return false;
     }
-
 }
-
