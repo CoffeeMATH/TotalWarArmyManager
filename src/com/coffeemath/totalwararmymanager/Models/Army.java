@@ -29,16 +29,16 @@ public class Army {
             ResultSet rset = stmt.executeQuery(sql);
 
             while(rset.next()) {
-                System.out.println("weee");
+
                 int uID = rset.getInt("U_ID");
-                System.out.println("weee2");
                 ResultSet unit = stmt.executeQuery("SELECT * FROM UNIT WHERE UNIT_ID = " + uID + ";");
                 Unit temp = new Unit(unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
 
                 a_units.add(temp);
+                unit.close();
                 //System.out.println("hahahhaa");
             }
-
+            rset.close();
             stmt.close();
             c.close();
 

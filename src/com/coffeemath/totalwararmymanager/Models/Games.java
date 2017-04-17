@@ -31,6 +31,7 @@ public class Games{
                 String gName = game.getString("GAME_NAME");
                 Game temp = new Game(gName, gID);
                 GameList.add(temp);
+                game.close();
             }
             stmt.close();
             c.close();

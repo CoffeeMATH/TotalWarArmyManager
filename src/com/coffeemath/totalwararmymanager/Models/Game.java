@@ -3,7 +3,7 @@ package com.coffeemath.totalwararmymanager.Models;
 public class Game{
     public String g_name;
     public Game game;
-    private int g_id;
+    public int g_id;
     public static Faction g_fact;
 
     public Game(String gname, int gID){
