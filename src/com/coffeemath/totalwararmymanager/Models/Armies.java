@@ -43,7 +43,7 @@ public class Armies {
         }
     }
 
-}
+
     public boolean addArmy(String army_name){
 
         try {
@@ -54,7 +54,7 @@ public class Armies {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String sql = "INSERT INTO ARMY (ARMY_NAME)" + " VALUES ("+ army_name ");";
+            String sql = "INSERT INTO ARMY (ARMY_NAME)" + " VALUES ("+ army_name + ");";
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -92,7 +92,7 @@ public class Armies {
         }
     }
 
-    public boolean updateArmy(String army_name, String new_armyname){
+    public boolean updateArmy(String army_name, String new_army_name){
         try {
             Connection c = null;
             Statement stmt = null;
@@ -101,12 +101,13 @@ public class Armies {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT  * FROM ARMY WHERE ARMY_NAME = "+ army_name ";");
+            ResultSet rs = stmt.executeQuery("SELECT  * FROM ARMY WHERE ARMY_NAME = "+ army_name + ";");
             if(rs.wasNull()) return false;
             else{
                 String sql = "UPDATE ARMY SET ARMY_NAME = " + new_army_name +"WHERE ARMY_NAME = "+ army_name +";";
+                stmt.executeUpdate(sql);
             }
-            stmt.executeUpdate(sql);
+            //stmt.executeUpdate(sql);
 
             stmt.close();
             c.commit();
@@ -118,4 +119,5 @@ public class Armies {
         }
         return false;
     }
+
 }
