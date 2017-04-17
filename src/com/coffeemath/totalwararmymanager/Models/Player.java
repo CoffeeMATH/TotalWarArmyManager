@@ -6,9 +6,12 @@ public class Player{
     public String p_name;
     public Player player;
     private int p_id;
-    public Player(String name){
+    public Player(String pname, int pID){
         player = this;
-        this.p_name = name;
+        this.p_name = pname;
+        this.p_id = pID;
+
+        p_games = new Games(pID);
     }
     public String getName(){return this.p_name;}
     public Player getPlayer(){return this;}

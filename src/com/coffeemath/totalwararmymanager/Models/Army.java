@@ -33,6 +33,10 @@ public class Army {
                 Unit temp = new Unit(unit.getNString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
                 a_units.add(temp);
             }
+
+            stmt.close();
+            c.close();
+
         } catch(Exception e){
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
