@@ -6,8 +6,9 @@ package com.coffeemath.totalwararmymanager.Models;
 public class Test {
     public static void main(String[] args){
         Players player = new Players();
-        System.out.println(player.PlayerList.get(0).getId());
-        System.out.println(player.PlayerList.get(0).getName());
+
+
+
     }
 
 }

@@ -15,6 +15,7 @@ public class Games{
 
     public Games(int pID){
         try {
+
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
 
@@ -25,11 +26,12 @@ public class Games{
 
             while (rset.next()){
                 int gID = rset.getInt("G_ID");
-                sql = "SELECT * FROM GAMES WHERE G_ID = " + gID;
+                sql = "SELECT * FROM GAMES WHERE GAME_ID = " + gID;
                 ResultSet game = stmt.executeQuery(sql);
-                String gName = game.getNString("GAME_NAME");
+                String gName = game.getString("GAME_NAME");
                 Game temp = new Game(gName, gID);
                 GameList.add(temp);
+                game.close();
             }
             stmt.close();
             c.close();
