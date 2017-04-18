@@ -10,6 +10,7 @@ public class Unit {
     public int u_RCost;
     public int u_UCost;
     public int u_type;
+    public int u_ct;
 
     public Unit(String uname, int rcost, int ucost, int utype){
         unit = this;

@@ -11,6 +11,7 @@ public class Army {
     public Army army;
     public int a_id;
     public ArrayList<Unit> a_units = new ArrayList<>();
+    public int a_size = 0;
 
     private Connection c;
     private Statement stmt;
@@ -50,5 +51,42 @@ public class Army {
     }
     public String getName(){return this.a_name;}
     public Army getArmy(){return this;}
+
+
+
+    public boolean addUnit(String unit_name){
+        if (a_size > 19){
+            return false;
+        }
+        else {
+            try {
+                Class.forName("org.sqlite.JDBC");
+                c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
+                c.setAutoCommit(false);
+
+                stmt = c.createStatement();
+
+                String sql = "SELECT * FROM UNIT WHERE UNIT_NAME = " + unit_name + ";";
+                ResultSet unit = stmt.executeQuery(sql);
+                Unit temp = new Unit(unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
+
+                a_units.add(temp);
+                unit.close();
+                stmt.close();
+                c.close();
+
+
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
+            }
+        }
+        return true;
+    }
+
+    public boolean deleteUnit(String unit_name){
+        return true;
+    }
+
 
 }
