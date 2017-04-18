@@ -13,8 +13,10 @@ public class Games{
     public Game GCursor;
     private Connection c;
     private Statement stmt;
+    int playerID;
 
     public Games(int pID){
+        this.playerID = pID;
         try {
 
             Class.forName("org.sqlite.JDBC");
@@ -50,12 +52,22 @@ public class Games{
             c.setAutoCommit(false);
 
             stmt=c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gname +";" );
-            if(!rs.wasNull())
-                return false;
-            String sql = "INSERT INTO GAMES (GAME_NAME)" + "VALUES (" + gname + ");";
-            stmt.executeUpdate(sql);
+           // ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gname +";" );
+           /* if(!rs.wasNull())
+                return false; */
+            String sql = "INSERT INTO GAMES (GAME_NAME, FACTION_ID)" + "VALUES ('" + gname + "' ,1);";
 
+            stmt.executeUpdate(sql);
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM GAMES WHERE GAME_NAME ='" + gname +"';" );
+            int id = 0;
+
+            if(rs.next())
+                id = rs.getInt("GAME_ID");
+            Game temp = new Game(gname, id);
+
+            String sql1 = "INSERT INTO PLAYER_GAME (P_ID, G_ID)" + "VALUES (" + this.playerID +","+ id +");";
+            stmt.executeUpdate(sql1);
+            GameList.add(temp);
             stmt.close();
             c.commit();
             c.close();
@@ -69,16 +81,23 @@ public class Games{
         return false;
     }
 
-    public void deleteGame(String gname){
+    public void deleteGame(int index){
+        int army_count = GameList.get(index).g_armies.ArmyList.size();
+        for (int i = 0; i < army_count; i++){
+            GameList.get(index).g_armies.deleteArmy(i);
+        }
+
+        int gid = GameList.get(index).g_id;
+        GameList.remove(index);
         try{
             Connection c = null;
             Statement stmt = null;
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);
-
+            String sql = "DELETE FROM PLAYER_GAME WHERE G_ID = " + gid + ";";
             stmt=c.createStatement();
-            String sql = "DELETE FROM GAMES WHERE GAME_NAME = " +  gname + ";";
+            sql = "DELETE FROM GAMES WHERE GAME_ID = " + gid + ";";
             stmt.executeUpdate(sql);
 
             stmt.close();

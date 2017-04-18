@@ -13,6 +13,7 @@ public class Players {
     public Player PCursor;
     private Connection c;
     private Statement stmt;
+    public int counter;
 
     public Players(){
 
@@ -48,17 +49,29 @@ public class Players {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM PLAYERS WHERE PLAYER_NAME =" + pname +";" );
-            if(!rs.wasNull()){
+            System.out.println("1");
+
+            /*if(!rs.wasNull()){
+                System.out.println("here");
                 return false;
             }
-            String sql = "INSERT INTO PLAYERS (PLAYER_NAME)" + "VALUES (" + pname + ");";
-            stmt.executeUpdate(sql);
+            else { */
 
-            stmt.close();
-            c.commit();
-            c.close();
-            return true;
+                String sql = "INSERT INTO PLAYERS (PLAYER_NAME)" + "VALUES ('" + pname + "');";
+
+
+                stmt.executeUpdate(sql);
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM PLAYERS WHERE PLAYER_NAME LIKE '" + pname +"';" );
+            int id = 0;
+            if(rs.next())
+                id = rs.getInt("PLAYER_ID");
+            Player temp = new Player(pname, id);
+            PlayerList.add(temp);
+                stmt.close();
+                c.commit();
+                c.close();
+                return true;
+           // }
 
         }catch(Exception e){
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -66,7 +79,13 @@ public class Players {
         }
         return false;
     }
-    public void deletePlayer(String pname){
+    public void deletePlayer(int index){
+        int game_count = PlayerList.get(index).p_games.GameList.size();
+        for (int i = 0; i < game_count; i++){
+            PlayerList.get(index).p_games.deleteGame(i);
+        }
+        int pid = PlayerList.get(index).getId();
+        PlayerList.remove(index);
         try{
             Connection c = null;
             Statement stmt  = null;
@@ -75,7 +94,7 @@ public class Players {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String sql = "DELETE from PLAYERS where PLAYER_NAME =" + pname + ";";
+            String sql = "DELETE from PLAYERS where PLAYER_ID =" + pid + ";";
             stmt.executeUpdate(sql);
 
             stmt.close();

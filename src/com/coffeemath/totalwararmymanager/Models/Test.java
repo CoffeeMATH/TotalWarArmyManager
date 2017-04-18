@@ -5,7 +5,11 @@ package com.coffeemath.totalwararmymanager.Models;
  */
 public class Test {
     public static void main(String[] args){
-        Players player = new Players();
+       Players myPlayer = new Players();
+
+       //myPlayer.addPlayer("Pavlov1");
+       //myPlayer.addPlayer("Pavlov2");
+        System.out.println(myPlayer.PlayerList.get(2).p_name + myPlayer.PlayerList);
 
 
 

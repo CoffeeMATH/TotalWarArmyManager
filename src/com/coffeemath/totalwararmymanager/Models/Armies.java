@@ -13,8 +13,10 @@ public class Armies {
     public Army ACursor;
     private Connection c;
     private Statement stmt;
+    int gameID;
 
     public Armies(int gID){
+        this.gameID = gID;
         try{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
@@ -55,9 +57,16 @@ public class Armies {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String sql = "INSERT INTO ARMY (ARMY_NAME)" + " VALUES ("+ army_name + ");";
+            String sql = "INSERT INTO ARMY (ARMY_NAME, TERRAIN_TYPE)" + " VALUES ('"+ army_name + "' , 1);";
             stmt.executeUpdate(sql);
-
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM ARMY WHERE ARMY_NAME LIKE '" + army_name +"';" );
+            int id = 0;
+            if(rs.next())
+                id = rs.getInt("ARMY_ID");
+            Army temp = new Army(army_name, id);
+            String sql1 = "INSERT INTO GAME_ARMY (G_ID, A_ID)" + "VALUES (" + gameID +","+ id +");";
+            stmt.executeUpdate(sql1);
+            ArmyList.add(temp);
             stmt.close();
             c.commit();
             c.close();
@@ -71,7 +80,9 @@ public class Armies {
         return false;
     }
 
-    public void deleteArmy(String army_name){
+    public void deleteArmy(int index){
+        int aid = ArmyList.get(index).a_id;
+        ArmyList.remove(index);
 
         try {
             Connection c = null;
@@ -81,7 +92,10 @@ public class Armies {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String  sql = "DELETE from ARMY where ARMY_NAME = " +  army_name +";" ;
+            String  sql = "DELETE from RECRUITMENT where A_ID = " + aid +";" ;
+            stmt.executeUpdate(sql);
+
+            sql = "DELETE from ARMY where A_ID = " + aid +";" ;
             stmt.executeUpdate(sql);
 
             stmt.close();
