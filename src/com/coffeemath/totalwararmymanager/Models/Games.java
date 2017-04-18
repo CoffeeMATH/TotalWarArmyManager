@@ -80,16 +80,23 @@ public class Games{
         return false;
     }
 
-    public void deleteGame(String gname){
+    public void deleteGame(int index){
+        int army_count = GameList.get(index).g_armies.ArmyList.size();
+        for (int i = 0; i < army_count; i++){
+            GameList.get(index).g_armies.deleteArmy(i);
+        }
+
+        int gid = GameList.get(index).g_id;
+        GameList.remove(index);
         try{
             Connection c = null;
             Statement stmt = null;
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);
-
+            String sql = "DELETE FROM PLAYER_GAME WHERE G_ID = " + gid + ";";
             stmt=c.createStatement();
-            String sql = "DELETE FROM GAMES WHERE GAME_NAME = " +  gname + ";";
+            sql = "DELETE FROM GAMES WHERE GAME_ID = " + gid + ";";
             stmt.executeUpdate(sql);
 
             stmt.close();
