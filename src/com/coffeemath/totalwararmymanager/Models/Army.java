@@ -33,8 +33,7 @@ public class Army {
 
                 int uID = rset.getInt("U_ID");
                 ResultSet unit = stmt.executeQuery("SELECT * FROM UNIT WHERE UNIT_ID = " + uID + ";");
-                String
-                Unit temp = new Unit(, unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
+                Unit temp = new Unit(unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
 
                 a_units.add(temp);
                 unit.close();
@@ -69,23 +68,24 @@ public class Army {
 
                 String sql = "SELECT * FROM UNIT WHERE UNIT_NAME = " + unit_name + ";";
                 ResultSet unit = stmt.executeQuery(sql);
-                Unit temp = new Unit(, unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
+                Unit temp = new Unit(unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
 
                 a_units.add(temp);
                 unit.close();
                 stmt.close();
                 c.close();
-                return true;
+
 
             } catch (Exception e) {
                 System.err.println(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(0);
             }
         }
+        return true;
     }
 
     public boolean deleteUnit(String unit_name){
-
+        return true;
     }
 
 
