@@ -56,7 +56,7 @@ public class Players {
                 return false;
             }
             else { */
-                System.out.println("3");
+
                 String sql = "INSERT INTO PLAYERS (PLAYER_NAME)" + "VALUES ('" + pname + "');";
 
                 stmt.executeUpdate(sql);
