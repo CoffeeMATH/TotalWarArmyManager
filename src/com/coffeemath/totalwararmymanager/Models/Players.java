@@ -50,18 +50,22 @@ public class Players {
 
             stmt = c.createStatement();
             System.out.println("1");
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM PLAYERS WHERE PLAYER_NAME LIKE '" + pname +"';" );
-            System.out.println("2");
+
             /*if(!rs.wasNull()){
                 System.out.println("here");
                 return false;
             }
             else { */
-                System.out.println("3");
-                String sql = "INSERT INTO PLAYERS (PLAYER_NAME)" + "VALUES ('" + pname + "');";
-                System.out.println("4");
-                stmt.executeUpdate(sql);
 
+                String sql = "INSERT INTO PLAYERS (PLAYER_NAME)" + "VALUES ('" + pname + "');";
+
+                stmt.executeUpdate(sql);
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM PLAYERS WHERE PLAYER_NAME LIKE '" + pname +"';" );
+            int id = 0;
+            if(rs.next())
+                id = rs.getInt("PLAYER_ID");
+            Player temp = new Player(pname, id);
+            PlayerList.add(temp);
                 stmt.close();
                 c.commit();
                 c.close();

@@ -49,12 +49,17 @@ public class Games{
             c.setAutoCommit(false);
 
             stmt=c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gname +";" );
-            if(!rs.wasNull())
-                return false;
-            String sql = "INSERT INTO GAMES (GAME_NAME)" + "VALUES (" + gname + ");";
+           // ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gname +";" );
+           /* if(!rs.wasNull())
+                return false; */
+            String sql = "INSERT INTO GAMES (GAME_NAME, FACTION_ID)" + "VALUES ('" + gname + "' ,1);";
             stmt.executeUpdate(sql);
-
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM GAMES WHERE GAME_NAME LIKE '" + gname +"';" );
+            int id = 0;
+            if(rs.next())
+                id = rs.getInt("GAME_ID");
+            Game temp = new Game(gname, id);
+            GameList.add(temp);
             stmt.close();
             c.commit();
             c.close();
