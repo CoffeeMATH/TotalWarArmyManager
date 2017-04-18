@@ -65,18 +65,18 @@ public class initDB {
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE UNIT" +
-                    "(UNIT_ID           INTEGER PRIMARY KEY," +
+                    "(UNIT_ID           INT PRIMARY KEY," +
                     " UNIT_NAME         NUMERIC NOT NULL," +
-                    " FACTION_ID        INTEGER NOT NULL," +
-                    " UPKEEP_COST       INTEGER NOT NULL," +
-                    " RECRUITMENT_COST  INTEGER NOT NULL," +
-                    " T_TYPE            INTEGER NOT NULL)";
+                    " FACTION_ID        INT NOT NULL," +
+                    " UPKEEP_COST       INT NOT NULL," +
+                    " RECRUITMENT_COST  INT NOT NULL," +
+                    " T_TYPE            INT NOT NULL)";
 
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE RECRUITMENT" +
                     "(A_ID              INTEGER," +
-                    " U_ID              INTEGER," +
+                    " U_ID              INT," +
                     " FOREIGN KEY (A_ID) REFERENCES ARMY(ARMY_ID)" +
                     " FOREIGN KEY (U_ID) REFERENCES UNIT(UNIT_ID))";
 
