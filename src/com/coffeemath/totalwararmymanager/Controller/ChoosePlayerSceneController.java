@@ -35,7 +35,7 @@ public class ChoosePlayerSceneController implements Initializable{
         functions.openTemporaryWindow("Edit Player","View/Scenes/EditScenes/editPlayer.fxml");
         players.refresh();
     });
-    private GraphicAction<Player> delCell = item -> functions.activatedButton("Delete",e -> playerScroll.PlayerList.remove(item));
+    private GraphicAction<Player> delCell = item -> functions.activatedButton("Delete",e -> playerScroll.deletePlayer(playerScroll.PlayerList.indexOf(item)));
 
     /** Presentation **/
     @Override

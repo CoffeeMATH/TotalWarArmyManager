@@ -95,8 +95,10 @@ public class Games{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);
+
+            stmt = c.createStatement();
             String sql = "DELETE FROM PLAYER_GAME WHERE G_ID = " + gid + ";";
-            stmt=c.createStatement();
+            stmt.executeUpdate(sql);
             sql = "DELETE FROM GAMES WHERE GAME_ID = " + gid + ";";
             stmt.executeUpdate(sql);
 

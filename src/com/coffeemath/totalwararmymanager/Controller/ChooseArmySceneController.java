@@ -34,7 +34,7 @@ public class ChooseArmySceneController implements Initializable {
     private GraphicAction<Army> armyCell = item -> functions.activatedButton(item.getName(),e -> {
         armyScroll.ACursor = item;
     });
-    private GraphicAction<Army> delCell = item -> functions.activatedButton("Delete",e -> armyScroll.ArmyList.remove(item));
+    private GraphicAction<Army> delCell = item -> functions.activatedButton("Delete",e -> armyScroll.deleteArmy(armyScroll.ArmyList.indexOf(item)));
     private GraphicAction<String> typeCell = item -> {Label l = new Label(); l.setText(item); return l;};
     private GraphicAction<String> genCell = item -> {Label l = new Label(); l.setText(item); return l;};
 

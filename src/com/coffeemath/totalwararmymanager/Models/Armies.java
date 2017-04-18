@@ -92,10 +92,13 @@ public class Armies {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String  sql = "DELETE from RECRUITMENT where A_ID = " + aid +";" ;
+            String  sql = "DELETE FROM RECRUITMENT WHERE A_ID = " + aid +";" ;
             stmt.executeUpdate(sql);
 
-            sql = "DELETE from ARMY where A_ID = " + aid +";" ;
+            sql = "DELETE FROM GAME_ARMY WHERE A_ID = " + aid +";" ;
+            stmt.executeUpdate(sql);
+
+            sql = "DELETE FROM ARMY WHERE ARMY_ID = " + aid +";" ;
             stmt.executeUpdate(sql);
 
             stmt.close();

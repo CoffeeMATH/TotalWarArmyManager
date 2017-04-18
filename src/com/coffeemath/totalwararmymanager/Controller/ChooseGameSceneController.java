@@ -38,7 +38,7 @@ public class ChooseGameSceneController implements Initializable {
         functions.openTemporaryWindow("Edit Game","View/Scenes/EditScenes/editGame.fxml");
         games.refresh();
     });
-    private GraphicAction<Game> delCell = item -> functions.activatedButton("Delete",e -> gameScroll.GameList.remove(item));
+    private GraphicAction<Game> delCell = item -> functions.activatedButton("Delete",e -> gameScroll.deleteGame(gameScroll.GameList.indexOf(item)));
 
     /** Presentation **/
     @Override
