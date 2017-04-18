@@ -5,17 +5,12 @@ package com.coffeemath.totalwararmymanager.Models;
  */
 public class Test {
     public static void main(String[] args){
-       // Players player = new Players();
-       // player.addPlayer("leo ");
-       // System.out.println(player.PlayerList.get(1).p_name);
+       Players myPlayer = new Players();
 
-        Games game = new Games(1);
-        game.addGame("asahi");
-        System.out.println(game.GameList.get(0).g_name);
+       //myPlayer.addPlayer("Pavlov1");
+       //myPlayer.addPlayer("Pavlov2");
+        System.out.println(myPlayer.PlayerList.get(2).p_name + myPlayer.PlayerList);
 
-       // Armies army = new Armies(1);
-        //army.addArmy("xenon");
-        //System.out.println(army.ArmyList.get(0).a_name);
 
 
     }
