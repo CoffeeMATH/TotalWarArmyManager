@@ -78,7 +78,13 @@ public class Players {
         }
         return false;
     }
-    public void deletePlayer(String pname){
+    public void deletePlayer(int index){
+        int game_count = PlayerList.get(index).p_games.GameList.size();
+        for (int i = 0; i < game_count; i++){
+            PlayerList.get(index).p_games.deleteGame(i);
+        }
+        int pid = PlayerList.get(index).getId();
+        PlayerList.remove(index);
         try{
             Connection c = null;
             Statement stmt  = null;
@@ -87,7 +93,7 @@ public class Players {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String sql = "DELETE from PLAYERS where PLAYER_NAME =" + pname + ";";
+            String sql = "DELETE from PLAYERS where PLAYER_ID =" + pid + ";";
             stmt.executeUpdate(sql);
 
             stmt.close();
