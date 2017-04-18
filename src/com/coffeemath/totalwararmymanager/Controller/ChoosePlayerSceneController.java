@@ -3,11 +3,11 @@ package com.coffeemath.totalwararmymanager.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.coffeemath.totalwararmymanager.Controller.TestModels.Player;
-import com.coffeemath.totalwararmymanager.Controller.TestModels.Scroll;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.Functions;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicAction;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicColumn;
+import com.coffeemath.totalwararmymanager.Models.Player;
+import com.coffeemath.totalwararmymanager.Models.Players;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -22,25 +22,25 @@ public class ChoosePlayerSceneController implements Initializable{
     @FXML private TableView<Player> players;
 
     /** Load Database List **/
-    public static Scroll<Player> playerScroll = new Scroll<>();
+    public static Players playerScroll = new Players();
 
     /** Column Functions **/
     private Functions functions = new Functions();
     private GraphicAction<Player> playerCell = item -> functions.activatedButton(item.getName(),e -> {
-        playerScroll.setCursor(item);
+        playerScroll.PCursor = item;
         functions.goToScene(addPlayerBtn,"View/Scenes/MainScenes/chooseGameScene.fxml");
     });
     private GraphicAction<Player> editCell = item -> functions.activatedButton("Edit",e -> {
-        playerScroll.setCursor(item);
+        playerScroll.PCursor = item;
         functions.openTemporaryWindow("Edit Player","View/Scenes/EditScenes/editPlayer.fxml");
         players.refresh();
     });
-    private GraphicAction<Player> delCell = item -> functions.activatedButton("Delete",e -> playerScroll.getItems().remove(item));
+    private GraphicAction<Player> delCell = item -> functions.activatedButton("Delete",e -> playerScroll.PlayerList.remove(item));
 
     /** Presentation **/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        players.setItems(playerScroll.getItems());
+        players.setItems(playerScroll.PlayerList);
         players.prefHeightProperty().bind(root.heightProperty().multiply(0.925));
         GraphicColumn<Player,Player> playerCol = new GraphicColumn<>("player",playerCell);
         GraphicColumn<Player,Player> editCol = new GraphicColumn<>("player",editCell);

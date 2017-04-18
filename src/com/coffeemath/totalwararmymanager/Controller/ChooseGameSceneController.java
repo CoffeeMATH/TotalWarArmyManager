@@ -1,10 +1,10 @@
 package com.coffeemath.totalwararmymanager.Controller;
 
-import com.coffeemath.totalwararmymanager.Controller.TestModels.Game;
-import com.coffeemath.totalwararmymanager.Controller.TestModels.Scroll;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.Functions;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicAction;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicColumn;
+import com.coffeemath.totalwararmymanager.Models.Game;
+import com.coffeemath.totalwararmymanager.Models.Games;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,28 +25,28 @@ public class ChooseGameSceneController implements Initializable {
     @FXML private Label playerLabel;
 
     /** Load Database List **/
-    public static Scroll<Game> gameScroll;
+    public static Games gameScroll;
 
     /** Column Functions **/
     private Functions functions = new Functions();
     private GraphicAction<Game> gameCell = item -> functions.activatedButton(item.getName(),e -> {
-        gameScroll.setCursor(item);
+        gameScroll.GCursor = item;
         functions.goToScene(games,"View/Scenes/MainScenes/chooseArmyScene.fxml");
     });
     private GraphicAction<Game> editCell = item -> functions.activatedButton("Edit", e -> {
-        gameScroll.setCursor(item);
+        gameScroll.GCursor = item;
         functions.openTemporaryWindow("Edit Game","View/Scenes/EditScenes/editGame.fxml");
         games.refresh();
     });
-    private GraphicAction<Game> delCell = item -> functions.activatedButton("Delete",e -> gameScroll.getItems().remove(item));
+    private GraphicAction<Game> delCell = item -> functions.activatedButton("Delete",e -> gameScroll.GameList.remove(item));
 
     /** Presentation **/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        gameScroll = ChoosePlayerSceneController.playerScroll.getCursor().getGames();
-        games.setItems(gameScroll.getItems());
+        gameScroll = ChoosePlayerSceneController.playerScroll.PCursor.p_games;
+        games.setItems(gameScroll.GameList);
         games.prefHeightProperty().bind(root.widthProperty().multiply(0.925));
-        playerLabel.setText(ChoosePlayerSceneController.playerScroll.getCursor().getName());
+        playerLabel.setText(ChoosePlayerSceneController.playerScroll.PCursor.getName());
         GraphicColumn<Game,Game> gameCol = new GraphicColumn<>("game",gameCell);
         GraphicColumn<Game,Game> editCol = new GraphicColumn<>("game",editCell);
         GraphicColumn<Game,Game> delCol = new GraphicColumn<>("game",delCell);

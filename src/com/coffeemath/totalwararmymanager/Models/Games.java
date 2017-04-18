@@ -9,7 +9,8 @@ import java.sql.*;
  * Created by Paul on 31/03/2017.
  */
 public class Games{
-    public static ObservableList<Game> GameList = FXCollections.observableArrayList();
+    public ObservableList<Game> GameList = FXCollections.observableArrayList();
+    public Game GCursor;
     private Connection c;
     private Statement stmt;
 

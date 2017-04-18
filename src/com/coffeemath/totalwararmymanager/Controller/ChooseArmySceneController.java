@@ -1,10 +1,10 @@
 package com.coffeemath.totalwararmymanager.Controller;
 
-import com.coffeemath.totalwararmymanager.Controller.TestModels.Army;
-import com.coffeemath.totalwararmymanager.Controller.TestModels.Scroll;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.Functions;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicAction;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicColumn;
+import com.coffeemath.totalwararmymanager.Models.Armies;
+import com.coffeemath.totalwararmymanager.Models.Army;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,24 +27,24 @@ public class ChooseArmySceneController implements Initializable {
     @FXML private Label gameLabel;
 
     /** Load Database List **/
-    public static Scroll<Army> armyScroll;
+    public static Armies armyScroll;
 
     /** Column Functions **/
     private Functions functions = new Functions();
     private GraphicAction<Army> armyCell = item -> functions.activatedButton(item.getName(),e -> {
-        armyScroll.setCursor(item);
+        armyScroll.ACursor = item;
     });
-    private GraphicAction<Army> delCell = item -> functions.activatedButton("Delete",e -> armyScroll.getItems().remove(item));
+    private GraphicAction<Army> delCell = item -> functions.activatedButton("Delete",e -> armyScroll.ArmyList.remove(item));
     private GraphicAction<String> typeCell = item -> {Label l = new Label(); l.setText(item); return l;};
     private GraphicAction<String> genCell = item -> {Label l = new Label(); l.setText(item); return l;};
 
     /** Presentation **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        armyScroll = ChooseGameSceneController.gameScroll.getCursor().getArmies();
-        armies.setItems(armyScroll.getItems());
-        playerLabel.setText(ChoosePlayerSceneController.playerScroll.getCursor().getName());
-        gameLabel.setText(ChooseGameSceneController.gameScroll.getCursor().getName());
+        armyScroll = ChooseGameSceneController.gameScroll.GCursor.g_armies;
+        armies.setItems(armyScroll.ArmyList);
+        playerLabel.setText(ChoosePlayerSceneController.playerScroll.PCursor.getName());
+        gameLabel.setText(ChooseGameSceneController.gameScroll.GCursor.getName());
         GraphicColumn<Army,Army> armyCol = new GraphicColumn<>("army",armyCell);
         GraphicColumn<Army,String> typeCol =  new GraphicColumn<>("type",typeCell);
         GraphicColumn<Army,String> genCol =  new GraphicColumn<>("genName",genCell);

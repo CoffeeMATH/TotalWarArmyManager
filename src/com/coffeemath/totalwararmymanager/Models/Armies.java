@@ -9,7 +9,8 @@ import java.sql.*;
  * Created by Paul on 31/03/2017.
  */
 public class Armies {
-    public static ObservableList<Army> ArmyList= FXCollections.observableArrayList();
+    public ObservableList<Army> ArmyList= FXCollections.observableArrayList();
+    public Army ACursor;
     private Connection c;
     private Statement stmt;
 
