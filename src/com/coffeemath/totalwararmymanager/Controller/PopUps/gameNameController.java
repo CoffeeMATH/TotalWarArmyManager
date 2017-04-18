@@ -5,6 +5,7 @@
  */
 package com.coffeemath.totalwararmymanager.Controller.PopUps;
 
+import com.coffeemath.totalwararmymanager.Controller.ChooseGameSceneController;
 import com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController;
 import com.coffeemath.totalwararmymanager.Controller.TestModels.Game;
 import javafx.event.ActionEvent;
@@ -29,7 +30,7 @@ public class gameNameController implements Initializable {
     @FXML private Button addGame;
     @FXML
     private void submit(){
-        ChoosePlayerSceneController.playerScroll.getCursor().getGames().getItems().add(new Game(gameField.getText()));
+        ChooseGameSceneController.gameScroll.addGame(gameField.getText());
         ((Stage)gameField.getScene().getWindow()).close();
     }
 

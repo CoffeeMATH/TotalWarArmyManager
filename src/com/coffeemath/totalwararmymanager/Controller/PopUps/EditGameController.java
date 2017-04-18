@@ -1,6 +1,6 @@
 package com.coffeemath.totalwararmymanager.Controller.PopUps;
 
-import com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController;
+import com.coffeemath.totalwararmymanager.Controller.ChooseGameSceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class EditGameController {
     @FXML private TextArea nameField;
     @FXML private void editTheGame(ActionEvent event){
-        ChoosePlayerSceneController.playerScroll.getCursor().getGames().getCursor().setName(nameField.getText());
+        ChooseGameSceneController.gameScroll.updateGame(ChooseGameSceneController.gameScroll.GCursor.getName(),nameField.getText());
         ((Stage)nameField.getScene().getWindow()).close();
     }
 }

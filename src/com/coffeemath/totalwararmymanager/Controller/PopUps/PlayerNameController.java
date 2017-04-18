@@ -38,7 +38,7 @@ public class PlayerNameController implements Initializable {
         });
     }
     private void submit(){
-        ChoosePlayerSceneController.playerScroll.getItems().add(new Player(nameField.getText()));
+        ChoosePlayerSceneController.playerScroll.addPlayer(nameField.getText());
         ((Stage)window.getScene().getWindow()).close();
     }
 }

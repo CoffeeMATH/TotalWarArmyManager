@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class EditPlayerController {
     @FXML private TextArea nameField;
     @FXML private void editThePlayer(ActionEvent event){
-        ChoosePlayerSceneController.playerScroll.getCursor().setName(nameField.getText());
+        ChoosePlayerSceneController.playerScroll.updatePlayer(ChoosePlayerSceneController.playerScroll.PCursor.getName(),nameField.getText());
         ((Stage)nameField.getScene().getWindow()).close();
     }
 }
