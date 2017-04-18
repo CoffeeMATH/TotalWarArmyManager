@@ -9,13 +9,13 @@ public class Test {
        // player.addPlayer("leo ");
        // System.out.println(player.PlayerList.get(1).p_name);
 
-        //Games game = new Games(1);
-        //game.addGame("tlc");
-        //System.out.println(game.GameList.get(0).g_name);
+        Games game = new Games(1);
+        game.addGame("asahi");
+        System.out.println(game.GameList.get(0).g_name);
 
-        Armies army = new Armies(1);
-        army.addArmy("xenon");
-        System.out.println(army.ArmyList.get(0).a_name);
+       // Armies army = new Armies(1);
+        //army.addArmy("xenon");
+        //System.out.println(army.ArmyList.get(0).a_name);
 
 
     }

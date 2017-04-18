@@ -59,6 +59,7 @@ public class Players {
 
                 String sql = "INSERT INTO PLAYERS (PLAYER_NAME)" + "VALUES ('" + pname + "');";
 
+
                 stmt.executeUpdate(sql);
             ResultSet rs = stmt.executeQuery( "SELECT * FROM PLAYERS WHERE PLAYER_NAME LIKE '" + pname +"';" );
             int id = 0;

@@ -12,8 +12,10 @@ public class Armies {
     public static ObservableList<Army> ArmyList= FXCollections.observableArrayList();
     private Connection c;
     private Statement stmt;
+    int gameID;
 
     public Armies(int gID){
+        this.gameID = gID;
         try{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
@@ -61,6 +63,8 @@ public class Armies {
             if(rs.next())
                 id = rs.getInt("ARMY_ID");
             Army temp = new Army(army_name, id);
+            String sql1 = "INSERT INTO GAME_ARMY (G_ID, A_ID)" + "VALUES (" + gameID +","+ id +");";
+            stmt.executeUpdate(sql1);
             ArmyList.add(temp);
             stmt.close();
             c.commit();
