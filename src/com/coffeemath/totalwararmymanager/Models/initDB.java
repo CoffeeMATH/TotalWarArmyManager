@@ -52,19 +52,27 @@ public class initDB {
                     " LEADER_NAME      NUMERIC NOT NULL," +
                     " RECRUITMENT_DISCOUNT INT NOT NULL," +
                     " UPKEEP_DISCOUNT  INT NOT NULL" +
-                    " T_TYPE)";
+                    " T_TYPE           INT NOT NULL)";
 
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE LEADER_ASSIGNMENT" +
-                    "(L_ID        INT," +
+                    "(L_ID         INT," +
                     " A_ID         INT," +
                     " FOREIGN KEY(L_ID) REFERENCES ARMY_LEADER(LEADER_ID)," +
                     " FOREIGN KEY(A_ID) REFERENCES ARMY(ARMY_ID))";
 
             stmt.executeUpdate(sql);
 
+            sql = "CREATE TABLE UNIT" +
+                    "(UNIT_ID           INT PRIMARY KEY," +
+                    " UNIT_NAME         NUMERIC NOT NULL," +
+                    " FACTION_ID        INT NOT NULL," +
+                    " UPKEEP_COST       INT NOT NULL" +
+                    " RECRUITMENT_COST  INT NOT NULL," +
+                    " ";
 
+            stmt.executeUpdate(sql);
 
 
 
