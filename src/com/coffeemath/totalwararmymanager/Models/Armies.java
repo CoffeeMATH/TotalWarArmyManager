@@ -54,9 +54,14 @@ public class Armies {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String sql = "INSERT INTO ARMY (ARMY_NAME)" + " VALUES ("+ army_name + ");";
+            String sql = "INSERT INTO ARMY (ARMY_NAME, TERRAIN_TYPE)" + " VALUES ('"+ army_name + "' , 1);";
             stmt.executeUpdate(sql);
-
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM ARMY WHERE ARMY_NAME LIKE '" + army_name +"';" );
+            int id = 0;
+            if(rs.next())
+                id = rs.getInt("ARMY_ID");
+            Army temp = new Army(army_name, id);
+            ArmyList.add(temp);
             stmt.close();
             c.commit();
             c.close();
