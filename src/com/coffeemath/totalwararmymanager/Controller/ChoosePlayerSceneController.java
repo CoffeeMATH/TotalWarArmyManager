@@ -14,13 +14,17 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 public class ChoosePlayerSceneController implements Initializable{
+
+    /** Load UI Elements from FXML **/
     @FXML private VBox root;
     @FXML private Button addPlayerBtn;
     @FXML private Button backBtn;
     @FXML private TableView<Player> players;
 
+    /** Load Database List **/
     public static Scroll<Player> playerScroll = new Scroll<>();
 
+    /** Column Functions **/
     private Functions functions = new Functions();
     private GraphicAction<Player> playerCell = item -> functions.activatedButton(item.getName(),e -> {
         playerScroll.setCursor(item);
@@ -33,6 +37,7 @@ public class ChoosePlayerSceneController implements Initializable{
     });
     private GraphicAction<Player> delCell = item -> functions.activatedButton("Delete",e -> playerScroll.getItems().remove(item));
 
+    /** Presentation **/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         players.setItems(playerScroll.getItems());

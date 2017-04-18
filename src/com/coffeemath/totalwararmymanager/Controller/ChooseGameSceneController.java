@@ -16,14 +16,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChooseGameSceneController implements Initializable {
+
+    /** Load UI Elements from FXML **/
     @FXML private VBox root;
     @FXML private TableView<Game> games;
     @FXML private Button addBtn;
     @FXML private Button backBtn;
     @FXML private Label playerLabel;
 
+    /** Load Database List **/
     public static Scroll<Game> gameScroll;
 
+    /** Column Functions **/
     private Functions functions = new Functions();
     private GraphicAction<Game> gameCell = item -> functions.activatedButton(item.getName(),e -> {
         gameScroll.setCursor(item);
@@ -36,6 +40,7 @@ public class ChooseGameSceneController implements Initializable {
     });
     private GraphicAction<Game> delCell = item -> functions.activatedButton("Delete",e -> gameScroll.getItems().remove(item));
 
+    /** Presentation **/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         gameScroll = ChoosePlayerSceneController.playerScroll.getCursor().getGames();

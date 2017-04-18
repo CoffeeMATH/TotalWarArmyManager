@@ -18,14 +18,18 @@ import java.util.ResourceBundle;
  * Created by Alcoseba on 4/13/2017.
  */
 public class ChooseArmySceneController implements Initializable {
+
+    /** Load UI Elements from FXML **/
     @FXML private TableView<Army> armies;
     @FXML private Button addBtn;
     @FXML private Button backBtn;
     @FXML private Label playerLabel;
     @FXML private Label gameLabel;
 
+    /** Load Database List **/
     public static Scroll<Army> armyScroll;
 
+    /** Column Functions **/
     private Functions functions = new Functions();
     private GraphicAction<Army> armyCell = item -> functions.activatedButton(item.getName(),e -> {
         armyScroll.setCursor(item);
@@ -34,6 +38,7 @@ public class ChooseArmySceneController implements Initializable {
     private GraphicAction<String> typeCell = item -> {Label l = new Label(); l.setText(item); return l;};
     private GraphicAction<String> genCell = item -> {Label l = new Label(); l.setText(item); return l;};
 
+    /** Presentation **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         armyScroll = ChooseGameSceneController.gameScroll.getCursor().getArmies();
