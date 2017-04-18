@@ -109,7 +109,7 @@ public class Games{
         }
 
     }
-    public boolean updateGame(String gnameO, String gnameN){
+    public boolean updateGame(int gameList_index, String newGameName){
         try{
             Connection c = null;
             Statement stmt = null;
@@ -118,10 +118,10 @@ public class Games{
             c.setAutoCommit(false);
 
             stmt=c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gnameN +";" );
-            if(!rs.wasNull())
-                return false;
-            String sql = "UPDATE GAMES set GAME_NAME =" +gnameN +"WHERE GAME_NAME =" +gnameO+ ";";
+//            ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gnameN +";" );
+//            if(!rs.wasNull()) return false;
+            String oldGameName = GameList.get(gameList_index).getName();
+            String sql = "UPDATE GAMES set GAME_NAME ='" +newGameName +"' WHERE GAME_NAME LIKE '" +oldGameName+ "';";
             stmt.executeUpdate(sql);
 
             stmt.close();

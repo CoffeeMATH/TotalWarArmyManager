@@ -109,7 +109,7 @@ public class Players {
 
     }
 
-    public boolean updatePlayer(String pnameO, String pnameN){
+    public boolean updatePlayer(int playerList_index, String newPlayerName){
         try{
             Connection c = null;
             Statement stmt  = null;
@@ -118,10 +118,10 @@ public class Players {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM PLAYERS WHERE PLAYER_NAME =" + pnameN +";" );
-            if(!rs.wasNull())return false;
-
-            String sql = "UPDATE PLAYERS set PLAYER_NAME =" + pnameN + "WHERE PLAYER_NAME =" + pnameO + ";";
+//            ResultSet rs = stmt.executeQuery( "SELECT * FROM PLAYERS WHERE PLAYER_NAME =" + pnameN +";" );
+  //          if(!rs.wasNull())return false;
+            String oldPlayerName = PlayerList.get(playerList_index).getName();
+            String sql = "UPDATE PLAYERS SET PLAYER_NAME ='" + newPlayerName + "' WHERE PLAYER_NAME LIKE '" + oldPlayerName + "';";
 
             stmt.executeUpdate(sql);
             stmt.close();
