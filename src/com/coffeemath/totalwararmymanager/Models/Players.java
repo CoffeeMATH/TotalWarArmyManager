@@ -122,7 +122,7 @@ public class Players {
   //          if(!rs.wasNull())return false;
             String oldPlayerName = PlayerList.get(playerList_index).getName();
             String sql = "UPDATE PLAYERS SET PLAYER_NAME ='" + newPlayerName + "' WHERE PLAYER_NAME LIKE '" + oldPlayerName + "';";
-
+            PlayerList.get(playerList_index).p_name = newPlayerName;
             stmt.executeUpdate(sql);
             stmt.close();
             c.commit();

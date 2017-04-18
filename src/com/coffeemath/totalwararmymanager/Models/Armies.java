@@ -110,7 +110,7 @@ public class Armies {
         }
     }
 
-    public boolean updateArmy(String army_name, String new_army_name){
+    public boolean updateArmy(int armyList_index, String newArmyName){
         try {
             Connection c = null;
             Statement stmt = null;
@@ -119,13 +119,12 @@ public class Armies {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT  * FROM ARMY WHERE ARMY_NAME = "+ army_name + ";");
-            if(rs.wasNull()) return false;
-            else{
-                String sql = "UPDATE ARMY SET ARMY_NAME = " + new_army_name +"WHERE ARMY_NAME = "+ army_name +";";
-                stmt.executeUpdate(sql);
-            }
-            //stmt.executeUpdate(sql);
+//          ResultSet rs = stmt.executeQuery("SELECT  * FROM ARMY WHERE ARMY_NAME = "+ army_name + ";");
+//          if(rs.wasNull()) return false;
+            String oldArmyName = ArmyList.get(armyList_index).getName();
+            String sql = "UPDATE ARMY SET ARMY_NAME = '" + newArmyName +"' WHERE ARMY_NAME LIKE '"+ oldArmyName +"';";
+            stmt.executeUpdate(sql);
+            ArmyList.get(armyList_index).a_name = newArmyName;
 
             stmt.close();
             c.commit();

@@ -125,6 +125,7 @@ public class Games{
 //            if(!rs.wasNull()) return false;
             String oldGameName = GameList.get(gameList_index).getName();
             String sql = "UPDATE GAMES set GAME_NAME ='" +newGameName +"' WHERE GAME_NAME LIKE '" +oldGameName+ "';";
+            GameList.get(gameList_index).g_name = newGameName;
             stmt.executeUpdate(sql);
 
             stmt.close();
