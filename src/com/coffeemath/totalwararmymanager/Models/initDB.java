@@ -67,10 +67,10 @@ public class initDB {
             sql = "CREATE TABLE UNIT" +
                     "(UNIT_ID           INT PRIMARY KEY," +
                     " UNIT_NAME         NUMERIC," +
-                    " FACTION_ID        INT NOT NULL," +
-                    " UPKEEP_COST       INT NOT NULL," +
-                    " RECRUITMENT_COST  INT NOT NULL," +
-                    " T_TYPE            INT NOT NULL)";
+                    " FACTION_ID        INT," +
+                    " UPKEEP_COST       INT," +
+                    " RECRUITMENT_COST  INT," +
+                    " T_TYPE            INT)";
 
             stmt.executeUpdate(sql);
 
