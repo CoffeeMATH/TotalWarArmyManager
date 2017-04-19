@@ -14,14 +14,11 @@
     visibility: hidden;
     -fx-padding: -1em;
 }
-.label{
-    -fx-font-size: 30px;
-}
+
 .button{
     -fx-background-color: #8b8886;
     -fx-text-alignment: center;
     -fx-text-fill: black;
-    -fx-font-size: 30px;
     -fx-border-color: black;
 }
 .button:hover {
