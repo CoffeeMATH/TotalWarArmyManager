@@ -12,7 +12,8 @@ public class Armies {
     public ObservableList<Army> ArmyList= FXCollections.observableArrayList();
     public Army ACursor;
     private Connection c;
-    private Statement stmt;
+    private Statement stmt1;
+    private Statement stmt2;
     int gameID;
 
     public Armies(int gID){
@@ -22,22 +23,25 @@ public class Armies {
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             //c.setAutoCommit(false);
 
-            stmt = c.createStatement();
+            stmt1 = c.createStatement();
 
             String sql = "SELECT * FROM GAME_ARMY WHERE G_ID = " + gID ;
-            ResultSet rset = stmt.executeQuery(sql);
+            ResultSet rset = stmt1.executeQuery(sql);
 
             while (rset.next()){
+                stmt2 = c.createStatement();
                 int aID = rset.getInt("A_ID");
                 sql = "SELECT * FROM ARMY WHERE ARMY_ID = " + aID;
-                ResultSet army = stmt.executeQuery(sql);
+                ResultSet army = stmt2.executeQuery(sql);
                 army.next();
                 String aName = army.getString("ARMY_NAME");
                 Army temp = new Army(aName, aID);
                 ArmyList.add(temp);
+                army.close();
+                stmt2.close();
             }
-
-            stmt.close();
+            rset.close();
+            stmt1.close();
             c.close();
 
         } catch(Exception e) {

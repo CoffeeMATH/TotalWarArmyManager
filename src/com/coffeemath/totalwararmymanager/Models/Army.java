@@ -1,5 +1,6 @@
 package com.coffeemath.totalwararmymanager.Models;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -14,7 +15,8 @@ public class Army {
     public int a_size = 0;
 
     private Connection c;
-    private Statement stmt;
+    private Statement stmt1;
+    private Statement stmt2;
     public Army(String aname, int aID){
         army = this;
         this.a_name = aname;
@@ -24,23 +26,24 @@ public class Army {
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);
 
-            stmt = c.createStatement();
+            stmt1 = c.createStatement();
 
             String sql = "SELECT * FROM RECRUITMENT WHERE A_ID = " + aID + ";";
-            ResultSet rset = stmt.executeQuery(sql);
+            ResultSet rset = stmt1.executeQuery(sql);
 
             while(rset.next()) {
-
+                stmt2 = c.createStatement();
                 int uID = rset.getInt("U_ID");
-                ResultSet unit = stmt.executeQuery("SELECT * FROM UNIT WHERE UNIT_ID = " + uID + ";");
+                ResultSet unit = stmt2.executeQuery("SELECT * FROM UNIT WHERE UNIT_ID = " + uID + ";");
                 Unit temp = new Unit(unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
 
                 a_units.add(temp);
                 unit.close();
+                stmt2.close();
                 //System.out.println("hahahhaa");
             }
             rset.close();
-            stmt.close();
+            stmt1.close();
             c.close();
 
         } catch(Exception e){
@@ -64,15 +67,15 @@ public class Army {
                 c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
                 c.setAutoCommit(false);
 
-                stmt = c.createStatement();
+                stmt1 = c.createStatement();
 
                 String sql = "SELECT * FROM UNIT WHERE UNIT_NAME = " + unit_name + ";";
-                ResultSet unit = stmt.executeQuery(sql);
+                ResultSet unit = stmt1.executeQuery(sql);
                 Unit temp = new Unit(unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
 
                 a_units.add(temp);
                 unit.close();
-                stmt.close();
+                stmt1.close();
                 c.close();
 
 

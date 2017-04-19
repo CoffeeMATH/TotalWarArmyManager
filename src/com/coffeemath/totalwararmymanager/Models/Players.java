@@ -80,10 +80,9 @@ public class Players {
         return false;
     }
     public void deletePlayer(int index){
-        int game_count = PlayerList.get(index).p_games.GameList.size();
-        for (int i = 0; i < game_count; i++){
-            PlayerList.get(index).p_games.deleteGame(i);
-        }
+        while (PlayerList.get(index).p_games.GameList.size() > 0)
+            PlayerList.get(index).p_games.deleteGame(0);
+
         int pid = PlayerList.get(index).getId();
         PlayerList.remove(index);
         try{

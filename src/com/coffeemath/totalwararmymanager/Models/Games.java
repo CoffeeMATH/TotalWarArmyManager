@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.Iterator;
 
 /**
  * Created by Paul on 31/03/2017.
@@ -12,7 +13,8 @@ public class Games{
     public ObservableList<Game> GameList = FXCollections.observableArrayList();
     public Game GCursor;
     private Connection c;
-    private Statement stmt;
+    private Statement stmt1;
+    private Statement stmt2;
     int playerID;
 
     public Games(int pID){
@@ -22,21 +24,28 @@ public class Games{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
 
-            stmt = c.createStatement();
+            stmt1 = c.createStatement();
 
             String sql = "SELECT * FROM PLAYER_GAME WHERE P_ID = " + pID;
-            ResultSet rset = stmt.executeQuery(sql);
+            ResultSet rset = stmt1.executeQuery(sql);
 
             while (rset.next()){
+                stmt2 = c.createStatement();
+                //System.out.println("here "+this.playerID);
                 int gID = rset.getInt("G_ID");
                 sql = "SELECT * FROM GAMES WHERE GAME_ID = " + gID;
-                ResultSet game = stmt.executeQuery(sql);
+                ResultSet game = stmt2.executeQuery(sql);
+                game.next();
                 String gName = game.getString("GAME_NAME");
+                
                 Game temp = new Game(gName, gID);
                 GameList.add(temp);
                 game.close();
+                stmt2.close();
             }
-            stmt.close();
+
+            rset.close();
+            stmt1.close();
             c.close();
         } catch(Exception e){
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -71,6 +80,7 @@ public class Games{
             stmt.close();
             c.commit();
             c.close();
+
             return true;
 
 
@@ -82,10 +92,9 @@ public class Games{
     }
 
     public void deleteGame(int index){
-        int army_count = GameList.get(index).g_armies.ArmyList.size();
-        for (int i = 0; i < army_count; i++){
-            GameList.get(index).g_armies.deleteArmy(i);
-        }
+        while (GameList.get(index).g_armies.ArmyList.size() > 0)
+            GameList.get(index).g_armies.deleteArmy(0);
+
 
         int gid = GameList.get(index).g_id;
         GameList.remove(index);
