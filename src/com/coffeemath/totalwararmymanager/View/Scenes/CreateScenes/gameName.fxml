@@ -4,24 +4,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="185.0" prefWidth="235.0" styleClass="root" stylesheets="@../../StyleSheets/namesCSS.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.PopUps.gameNameController">
+<AnchorPane id="AnchorPane" prefHeight="245.0" prefWidth="230.0" styleClass="root" stylesheets="@../../StyleSheets/namesCSS.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.PopUps.gameNameController">
    <children>
-      <TextArea fx:id="gameField" layoutX="28.0" layoutY="40.0" prefHeight="31.0" prefWidth="194.0" />
-      <Button fx:id="addGame"  layoutX="87.0" layoutY="140.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="61.0" text="Done">
+      <TextArea fx:id="gameField" layoutX="18.0" layoutY="50.0" prefHeight="31.0" prefWidth="194.0" />
+      <Button fx:id="addGame"  layoutX="80.0" layoutY="200.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="61.0" text="Done">
          <font>
-            <Font size="15.0" />
+            <Font size="10.0" />
          </font>
       </Button>
-      <Label layoutX="28.0" layoutY="14.0" text="Enter Name:">
+      <Label layoutX="43.0" layoutY="13.0" text="Enter Name:">
          <font>
-            <Font size="17.0" />
+            <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="28.0" layoutY="71.0" prefHeight="26.0" prefWidth="122.0" text="Choose Faction:">
+      <Label layoutX="25.0" layoutY="100.0" prefHeight="26.0" prefWidth="200.0" text="Choose Faction:">
          <font>
-            <Font size="17.0" />
+            <Font size="7.0" />
          </font>
       </Label>
-      <ChoiceBox layoutX="32.0" layoutY="97.0" prefHeight="31.0" prefWidth="185.0" />
+      <ChoiceBox layoutX="20.0" layoutY="140.0" prefHeight="31.0" prefWidth="185.0" />
    </children>
 </AnchorPane>

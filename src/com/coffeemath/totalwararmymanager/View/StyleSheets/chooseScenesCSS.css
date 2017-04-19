@@ -1,48 +1,31 @@
-.gameLabel{
-    -fx-background-color: ThreeDHighlight;
-    -fx-text-alignment: center;
-    -fx-text-fill: darkolivegreen;
+.root{
+    -fx-background-image: url("../Backgrounds/choosePlayerScene2.jpg");
+    -fx-background-size: cover;
 }
-.playerLabel{
-    -fx-background-color: ThreeDHighlight;
-    -fx-text-alignment: center;
-    -fx-text-fill: darkslategray;
+.table-view {
+    -fx-cursor: hand;
+    -fx-background-image: url("../Backgrounds/choosePlayerScene2.jpg");
+    -fx-background-size: cover;
 }
-.armies{
-    -fx-background-color: darkgray;
-    -fx-text-alignment: center;
-    -fx-text-fill: navy;
+.table-row-cell {
+    -fx-background-color: transparent;
 }
-.games{
-    -fx-background-color: darkgray;
-    -fx-text-alignment: center;
-    -fx-text-fill: darkred;
+.column-header-background {
+    visibility: hidden;
+    -fx-padding: -1em;
 }
-.players {
-    -fx-background-color: darkgray;
-    -fx-text-alignment: center;
-    -fx-text-fill: darkred;
-}
-.addPlayerBtn{
-    -fx-background-color: darkgray;
-    -fx-text-alignment: center;
-    -fx-text-fill: darkred;
-}
-.addBtn{
-    -fx-background-color: darkkhaki;
-    -fx-text-alignment: center;
-    -fx-text-fill: black;
-}
-.backBtn{
-    -fx-background-color: darkkhaki;
-    -fx-text-alignment: center;
-    -fx-text-fill: black;
-}
-.table-view{
-    -fx-background-color: ;
+.label{
+    -fx-font-size: 30px;
 }
 .button{
-    -fx-background-color: darkgray;
+    -fx-background-color: #8b8886;
     -fx-text-alignment: center;
-    -fx-text-fill: darkred;
+    -fx-text-fill: black;
+    -fx-font-size: 30px;
+    -fx-border-color: black;
+}
+.button:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: #796e27;
+    -fx-border-color: transparent;
 }
