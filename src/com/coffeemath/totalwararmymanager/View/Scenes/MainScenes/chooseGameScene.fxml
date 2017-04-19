@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="root" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.ChooseGameSceneController">
+<VBox fx:id="root" stylesheets="@../../StyleSheets/chooseScenesCSS.css" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.ChooseGameSceneController">
    <children>
       <HBox prefHeight="45.0" prefWidth="600.0">
          <children>
@@ -14,10 +14,10 @@
          </children>
       </HBox>
       <TableView fx:id="games" prefHeight="370.0" prefWidth="600.0" />
-      <HBox prefHeight="44.0" prefWidth="600.0">
+      <HBox prefHeight="44.0" prefWidth="600.0" spacing="800">
          <children>
-            <Button fx:id="addBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Add Game" textAlignment="CENTER" />
-            <Button fx:id="backBtn" mnemonicParsing="false" text="Back" />
+            <Button fx:id="addBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Add Game" textAlignment="CENTER" prefHeight="100" prefWidth="250" />
+            <Button fx:id="backBtn" mnemonicParsing="false" text="Back" prefHeight="100" prefWidth="250"/>
          </children>
       </HBox>
    </children>

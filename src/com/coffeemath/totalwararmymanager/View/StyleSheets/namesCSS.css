@@ -1,0 +1,21 @@
+.text-area {
+    -fx-font-family: Consolas;
+    -fx-font-size: 15;
+    -fx-text-fill: #ffffff;
+    -fx-display-caret:true;
+}
+
+.text-area .content {
+    -fx-background-color: #000000;
+}
+.window {
+    -fx-background-color: black;
+}
+
+.label{
+    -fx-background-color: transparent;
+    -fx-text-alignment: center;
+    -fx-text-fill: black;
+    -fx-font-size: 25px;
+    -fx-content-display: center;
+}

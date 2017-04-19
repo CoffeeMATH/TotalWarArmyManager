@@ -1,0 +1,31 @@
+.root{
+    -fx-background-image: url("../Backgrounds/choosePlayerScene2.jpg");
+    -fx-background-size: cover;
+}
+.table-view {
+    -fx-cursor: hand;
+    -fx-background-image: url("../Backgrounds/choosePlayerScene2.jpg");
+    -fx-background-size: cover;
+}
+.table-row-cell {
+    -fx-background-color: transparent;
+}
+.column-header-background {
+    visibility: hidden;
+    -fx-padding: -1em;
+}
+.label{
+    -fx-font-size: 30px;
+}
+.button{
+    -fx-background-color: #8b8886;
+    -fx-text-alignment: center;
+    -fx-text-fill: black;
+    -fx-font-size: 30px;
+    -fx-border-color: black;
+}
+.button:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: #796e27;
+    -fx-border-color: transparent;
+}

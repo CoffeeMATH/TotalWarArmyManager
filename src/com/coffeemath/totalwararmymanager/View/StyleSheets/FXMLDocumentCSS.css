@@ -1,10 +1,15 @@
 .root{
     -fx-background-color: darkred;
-
+    -fx-background-image: url("../Backgrounds/FXML.jpg");
+    -fx-background-size: cover;
 }
 .button{
     -fx-background-color: transparent;
     -fx-text-alignment: center;
     -fx-text-fill: slategray;
 
+}
+.button:hover{
+    -fx-background-color: transparent;
+    -fx-text-fill: #796e27;
 }
