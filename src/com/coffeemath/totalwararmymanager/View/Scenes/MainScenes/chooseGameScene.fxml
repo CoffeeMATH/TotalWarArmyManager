@@ -14,10 +14,10 @@
          </children>
       </HBox>
       <TableView fx:id="games" prefHeight="370.0" prefWidth="600.0" />
-      <HBox prefHeight="44.0" prefWidth="600.0">
+      <HBox prefHeight="44.0" prefWidth="600.0" spacing="800">
          <children>
-            <Button fx:id="addBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Add Game" textAlignment="CENTER" />
-            <Button fx:id="backBtn" mnemonicParsing="false" text="Back" />
+            <Button fx:id="addBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Add Game" textAlignment="CENTER" prefHeight="100" prefWidth="250" />
+            <Button fx:id="backBtn" mnemonicParsing="false" text="Back" prefHeight="100" prefWidth="250"/>
          </children>
       </HBox>
    </children>
