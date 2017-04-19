@@ -53,7 +53,24 @@ public class Games{
             System.exit(0);
         }
     }
-    public boolean addGame(String gname, int faction){
+    public boolean addGame(String gname, String faction){
+        int fact = 0;
+        switch(faction){
+            case "Rome":
+                fact = 0;
+                break;
+
+            case "Carthage":
+                fact = 1;
+                break;
+
+            case "Macedon":
+                fact = 2;
+                break;
+
+            default:
+                break;
+        }
         try{
             Connection c = null;
             Statement stmt = null;
@@ -73,7 +90,7 @@ public class Games{
 
             if(rs.next())
                 id = rs.getInt("GAME_ID");
-            Game temp = new Game(gname, id, faction);
+            Game temp = new Game(gname, id, fact);
 
             String sql1 = "INSERT INTO PLAYER_GAME (P_ID, G_ID)" + "VALUES (" + this.playerID +","+ id +");";
             stmt.executeUpdate(sql1);
