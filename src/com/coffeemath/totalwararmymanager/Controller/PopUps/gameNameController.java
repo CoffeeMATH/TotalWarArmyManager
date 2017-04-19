@@ -8,10 +8,13 @@ package com.coffeemath.totalwararmymanager.Controller.PopUps;
 import com.coffeemath.totalwararmymanager.Controller.ChooseGameSceneController;
 import com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController;
 import com.coffeemath.totalwararmymanager.Controller.TestModels.Game;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
@@ -28,14 +31,17 @@ import java.util.ResourceBundle;
 public class gameNameController implements Initializable {
     @FXML private TextArea gameField;
     @FXML private Button addGame;
+    @FXML private ChoiceBox<String> factions;
     @FXML
     private void submit(){
-        ChooseGameSceneController.gameScroll.addGame(gameField.getText());
+        ChooseGameSceneController.gameScroll.addGame(gameField.getText(),factions.getSelectionModel().getSelectedItem());
         ((Stage)gameField.getScene().getWindow()).close();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<String> factionList = FXCollections.observableArrayList("Rome","Carthage","Macedon");
+        factions.setItems(factionList);
         addGame.setOnAction(e -> submit());
         gameField.setOnKeyPressed(e -> {
             if(e.getCode() == KeyCode.ENTER) submit();
