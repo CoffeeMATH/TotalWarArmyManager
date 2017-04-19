@@ -32,8 +32,11 @@ public class UnitNameController implements Initializable {
     /** Presentation **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        unitSelect.prefWidthProperty().bind(root.widthProperty());
         unitSelect.setItems(ArmyDetailsScene.stillCursor.showUnit());
-        unitSelect.getColumns().add(new GraphicColumn<>("unit",units));
+        GraphicColumn<Unit,Unit> unitCol = new GraphicColumn<>("unit",units);
+        unitCol.prefWidthProperty().bind(unitSelect.widthProperty());
+        unitSelect.getColumns().add(unitCol);
         doneButton.setOnAction(e -> ((Stage)doneButton.getScene().getWindow()).close());
     }
 }

@@ -17,7 +17,7 @@
         <TableView fx:id="armies" prefHeight="370.0" prefWidth="600.0" />
         <HBox prefHeight="44.0" prefWidth="600.0">
             <children>
-                <Button fx:id="addBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Add Unit" textAlignment="CENTER" />
+                <Button fx:id="addBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Add Army" textAlignment="CENTER" />
                 <Button fx:id="backBtn" mnemonicParsing="false" text="Back" />
             </children>
         </HBox>

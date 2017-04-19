@@ -59,7 +59,7 @@ public class ArmyDetailsScene implements Initializable {
         GraphicColumn<Unit,Unit> delCol = new GraphicColumn<>("unit",  delCol_c);
         unitCol.prefWidthProperty().bind(units.widthProperty().multiply(0.8));
         delCol.prefWidthProperty().bind(units.widthProperty().multiply(0.2));
-        addBtn.setOnAction(e -> functions.openNewWindow("Add Unit","View/Scenes/MainScenes/chooseArmyScene.fxml"));
+        addBtn.setOnAction(e -> functions.openNewWindow("Add Unit","View/Scenes/CreateScenes/unitName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/chooseArmyScene.fxml"));
     }
 }
