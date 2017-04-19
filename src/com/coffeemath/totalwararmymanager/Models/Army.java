@@ -1,5 +1,8 @@
 package com.coffeemath.totalwararmymanager.Models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
@@ -93,8 +96,71 @@ public class Army {
         return true;
     }
 
-    public boolean deleteUnit(String unit_name){
+    public boolean deleteUnit(int index){
+        if (index < 0 || index > a_size){
+            return false;
+        }
+        else {
+            String uname = a_units.get(index).u_name;
+            a_units.remove(index);
+            try {
+                Class.forName("org.sqlite.JDBC");
+                c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
+                c.setAutoCommit(false);
+
+                stmt1 = c.createStatement();
+
+                ResultSet rs = stmt1.executeQuery("SELECT * FROM UNIT WHERE UNIT_NAME = '" + uname + "';");
+                rs.next();
+                int uID = rs.getInt("UNIT_ID");
+
+                rs = stmt1.executeQuery("SELECT * FROM RECRUITMENT WHERE A_ID = " + this.a_id + "AND U_ID = " + uID + ";");
+                rs.next();
+                int rowID = rs.getInt("ROW_ID");
+                stmt1.executeUpdate("DELETE FROM RECRUITMENT WHERE ROW_ID = " + rowID + ";");
+
+                rs.close();
+                stmt1.close();
+                c.commit();
+                c.close();
+
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
+            }
+        }
         return true;
+    }
+
+    public ObservableList<Unit> showUnit(){
+        ObservableList<Unit> unitList = FXCollections.observableArrayList();
+        try{
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
+            c.setAutoCommit(false);
+            stmt1 = c.createStatement();
+
+            String sql = "SELECT * FROM UNIT WHERE FACTION_ID = " + this.faction  + " AND T_TYPE =" + this.terrain_type +";";
+            ResultSet rs =  stmt1.executeQuery(sql);
+
+            while(rs.next()){
+                int uID = rs.getInt("U_ID");
+                String uName = rs.getString("UNIT_NAME");
+                int uc = rs.getInt("UKEEP_COST");
+                int rc = rs.getInt("RECRUITMENT_COST");
+                Unit temp = new Unit(uName, uc, rc, this.terrain_type);
+                unitList.add(temp);
+            }
+
+            rs.close();
+            stmt1.close();
+            c.close();
+
+        }catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        return unitList;
     }
 
 
