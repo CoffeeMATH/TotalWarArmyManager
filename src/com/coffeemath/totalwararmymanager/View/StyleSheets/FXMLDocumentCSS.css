@@ -1,6 +1,10 @@
 .root{
     -fx-background-color: darkred;
+    -fx-background-image: url("../Backgrounds/FXML.jpg");
 }
 .button{
-    -fx-background-color: brown;
+    -fx-background-color: transparent;
+    -fx-text-alignment: center;
+    -fx-text-fill: slategray;
+
 }

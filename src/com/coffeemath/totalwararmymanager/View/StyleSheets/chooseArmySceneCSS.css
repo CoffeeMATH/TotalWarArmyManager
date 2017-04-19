@@ -1,0 +1,10 @@
+.gameLabel{
+    -fx-background-color: ThreeDHighlight;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkolivegreen;
+}
+.armies{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: navy;
+}
