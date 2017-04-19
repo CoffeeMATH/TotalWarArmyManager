@@ -17,17 +17,15 @@ public class Armies {
     int gameID;
     int faction;
 
-    public Armies(int gID, int faction){
+    public Armies(int gID, int fact){
         this.gameID = gID;
+        this.faction = fact;
         try{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             //c.setAutoCommit(false);
 
             stmt1 = c.createStatement();
-
-            System.out.println("do");
-
 
             String sql = "SELECT * FROM GAME_ARMY WHERE G_ID = " + gID ;
             ResultSet rset = stmt1.executeQuery(sql);
@@ -40,7 +38,7 @@ public class Armies {
                 army.next();
                 String aName = army.getString("ARMY_NAME");
                 int ttype = army.getInt("TERRAIN_TYPE");
-                Army temp = new Army(aName, aID, faction, ttype);
+                Army temp = new Army(aName, aID, fact, ttype);
                 ArmyList.add(temp);
                 army.close();
                 stmt2.close();
@@ -56,7 +54,7 @@ public class Armies {
     }
 
 
-    public boolean addArmy(String army_name, int ttype){
+    public boolean addArmy(String armyName, int terrainType, String leaderName){
 
         try {
             Connection c = null;
@@ -66,13 +64,13 @@ public class Armies {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String sql = "INSERT INTO ARMY (ARMY_NAME, TERRAIN_TYPE)" + " VALUES ('"+ army_name + "' , " + ttype + ");";
+            String sql = "INSERT INTO ARMY (ARMY_NAME, TERRAIN_TYPE, ARMY_LEADER)" + " VALUES ('"+ armyName +"','"+ terrainType+"','"+ leaderName+"');";
             stmt.executeUpdate(sql);
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM ARMY WHERE ARMY_NAME LIKE '" + army_name +"';" );
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM ARMY WHERE ARMY_NAME LIKE '" + armyName +"';" );
             int id = 0;
             if(rs.next())
                 id = rs.getInt("ARMY_ID");
-            Army temp = new Army(army_name, id, faction, ttype);
+            Army temp = new Army(armyName, id, faction, terrainType);
             String sql1 = "INSERT INTO GAME_ARMY (G_ID, A_ID)" + "VALUES (" + gameID +","+ id +");";
             stmt.executeUpdate(sql1);
             ArmyList.add(temp);

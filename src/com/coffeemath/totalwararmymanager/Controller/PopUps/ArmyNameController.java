@@ -23,7 +23,7 @@ public class ArmyNameController implements Initializable {
         int ttype;
         if(terrain.equals("Land")) ttype = 0;
         else ttype = 1;
-        ChooseArmySceneController.armyScroll.addArmy(armyField.getText(),ttype);
+        ChooseArmySceneController.armyScroll.addArmy(armyField.getText(),ttype,genField.getText());
         ((Stage)armyField.getScene().getWindow()).close();
     }
 

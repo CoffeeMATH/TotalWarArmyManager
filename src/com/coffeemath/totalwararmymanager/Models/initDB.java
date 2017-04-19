@@ -35,7 +35,8 @@ public class initDB {
             sql = "CREATE TABLE ARMY" +
                     "(ARMY_ID        INTEGER PRIMARY KEY AUTOINCREMENT," +
                     " ARMY_NAME      NUMERIC NOT NULL," +
-                    " TERRAIN_TYPE   INTEGER NOT NULL);";
+                    " TERRAIN_TYPE   INTEGER NOT NULL,"+
+                    "ARMY_LEADER     NUMERIC NOT NULL);";
 
             stmt.executeUpdate(sql);
 
