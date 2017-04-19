@@ -18,7 +18,8 @@ public class Army {
     public int faction;
     public ArrayList<Unit> a_units = new ArrayList<>();
     public int a_size = 0;
-
+    private int totalUC =0;
+    private int totalRC = 0;
     private Connection c;
     private Statement stmt1;
     private Statement stmt2;
@@ -42,12 +43,13 @@ public class Army {
                 stmt2 = c.createStatement();
                 int uID = rset.getInt("U_ID");
                 ResultSet unit = stmt2.executeQuery("SELECT * FROM UNIT WHERE UNIT_ID = " + uID + ";");
-                Unit temp = new Unit(unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
-
+                Unit temp = new Unit(uID, unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
+                totalRC += temp.u_RCost;
+                totalUC += temp.u_UCost;
                 a_units.add(temp);
                 unit.close();
                 stmt2.close();
-                //System.out.println("hahahhaa");
+
             }
             rset.close();
             stmt1.close();
@@ -78,8 +80,9 @@ public class Army {
 
                 String sql = "SELECT * FROM UNIT WHERE UNIT_NAME = " + unit_name + ";";
                 ResultSet unit = stmt1.executeQuery(sql);
-                Unit temp = new Unit(unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
-
+                Unit temp = new Unit(unit.getInt("UNIT_ID"), unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
+                totalRC += temp.u_RCost;
+                totalUC += temp.u_UCost;
                 a_units.add(temp);
                 a_size++;
                 unit.close();
@@ -101,7 +104,7 @@ public class Army {
             return false;
         }
         else {
-            String uname = a_units.get(index).u_name;
+            int uID = a_units.get(index).u_ID;
             a_units.remove(index);
             try {
                 Class.forName("org.sqlite.JDBC");
@@ -110,9 +113,10 @@ public class Army {
 
                 stmt1 = c.createStatement();
 
-                ResultSet rs = stmt1.executeQuery("SELECT * FROM UNIT WHERE UNIT_NAME = '" + uname + "';");
+                ResultSet rs = stmt1.executeQuery("SELECT * FROM UNIT WHERE UNIT_ID = " + uID + ";");
                 rs.next();
-                int uID = rs.getInt("UNIT_ID");
+                totalRC -= rs.getInt("RECRUITMENT_COST");
+                totalUC -= rs.getInt("UPKEEP_COST");
 
                 rs = stmt1.executeQuery("SELECT * FROM RECRUITMENT WHERE A_ID = " + this.a_id + "AND U_ID = " + uID + ";");
                 rs.next();
@@ -148,7 +152,7 @@ public class Army {
                 String uName = rs.getString("UNIT_NAME");
                 int uc = rs.getInt("UKEEP_COST");
                 int rc = rs.getInt("RECRUITMENT_COST");
-                Unit temp = new Unit(uName, uc, rc, this.terrain_type);
+                Unit temp = new Unit(uID, uName, uc, rc, this.terrain_type);
                 unitList.add(temp);
             }
 
