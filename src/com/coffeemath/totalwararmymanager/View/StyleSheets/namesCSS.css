@@ -1,50 +1,21 @@
-.armyField{
-    -fx-text-alignment: justify;
-    -fx-text-fill: darkslategray;
-    -fx-highlight-text-fill: darkgray;
+.text-area {
+    -fx-font-family: Consolas;
+    -fx-font-size: 15;
+    -fx-text-fill: #ffffff;
+    -fx-display-caret:true;
 }
-.genField{
-    -fx-text-alignment: justify;
-    -fx-text-fill: darkslategray;
-    -fx-highlight-text-fill: cadetblue;
+
+.text-area .content {
+    -fx-background-color: #000000;
 }
-.gameField{
-    -fx-text-alignment: justify;
-    -fx-text-fill: darkslategray;
-    -fx-highlight-text-fill: darkgray;
+.window {
+    -fx-background-color: black;
 }
-.nameField{
-    -fx-text-alignment: justify;
-    -fx-text-fill: darkslategray;
-    -fx-highlight-text-fill: darkgray;
-}
-.addArmy{
-    -fx-background-color: darkgray;
-    -fx-text-alignment: center;
-    -fx-text-fill: darkred;
-}
-.addGame{
-    -fx-background-color: darkgray;
-    -fx-text-alignment: center;
-    -fx-text-fill: darkred;
-}
-.addButton{
-    -fx-background-color: darkgray;
-    -fx-text-alignment: center;
-    -fx-text-fill: darkred;
-}
-.landOption{
-    -fx-background-color: darkgray;
-    -fx-text-alignment: center;
-    -fx-text-fill: saddlebrown;
-}
-.navalOption{
-    -fx-background-color: darkgray;
-    -fx-text-alignment: center;
-    -fx-text-fill: aquamarine;
-}
+
 .label{
-    -fx-background-color: darkgray;
+    -fx-background-color: transparent;
     -fx-text-alignment: center;
-    -fx-text-fill: aquamarine;
+    -fx-text-fill: black;
+    -fx-font-size: 25px;
+    -fx-content-display: center;
 }
