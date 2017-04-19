@@ -148,9 +148,9 @@ public class Army {
             ResultSet rs =  stmt1.executeQuery(sql);
 
             while(rs.next()){
-                int uID = rs.getInt("U_ID");
+                int uID = rs.getInt("UNIT_ID");
                 String uName = rs.getString("UNIT_NAME");
-                int uc = rs.getInt("UKEEP_COST");
+                int uc = rs.getInt("UPKEEP_COST");
                 int rc = rs.getInt("RECRUITMENT_COST");
                 Unit temp = new Unit(uID, uName, uc, rc, this.terrain_type);
                 unitList.add(temp);
