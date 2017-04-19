@@ -33,7 +33,7 @@ public class Leader {
     public int getUpkeep_discount(){return this.upkeep_discount;}
 
     /** adding to database **/
-    public Leader LCursor;
+     /*public Leader LCursor;
     private Connection c;
     private Statement stmt;
         try{
@@ -61,6 +61,7 @@ public class Leader {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
+        */
 
 }
 

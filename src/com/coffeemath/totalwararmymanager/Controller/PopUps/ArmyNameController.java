@@ -20,7 +20,7 @@ public class ArmyNameController implements Initializable {
     @FXML private RadioButton navalOption;
     private ToggleGroup toggleGroup = new ToggleGroup();
     @FXML private void addTheArmy(ActionEvent event){
-        ChooseArmySceneController.armyScroll.addArmy(armyField.getText());
+       // ChooseArmySceneController.armyScroll.addArmy(armyField.getText());
         ((Stage)armyField.getScene().getWindow()).close();
     }
 
