@@ -51,7 +51,7 @@ public class ArmyDetailsScene implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         functions.fix(root,600,400);
         stillCursor = ChooseArmySceneController.armyScroll.ACursor;
-        units.prefHeightProperty().bind(root.heightProperty().multiply(0.9275));
+        units.prefHeightProperty().bind(root.heightProperty().multiply(0.8375));
         units.setItems(stillCursor.a_units);
         stillCursor.a_units.addListener(new ListChangeListener<Unit>() {
             @Override

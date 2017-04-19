@@ -14,15 +14,17 @@
     visibility: hidden;
     -fx-padding: -1em;
 }
-
 .button{
-    -fx-background-color: #8b8886;
+    -fx-background-color: transparent;
     -fx-text-alignment: center;
-    -fx-text-fill: black;
-    -fx-border-color: black;
+    -fx-text-fill: #f6780b;
+    -fx-border-color: transparent;
 }
 .button:hover {
-    -fx-background-color: transparent;
-    -fx-text-fill: #796e27;
+    -fx-background-color: whitesmoke;
+    -fx-text-fill: black;
     -fx-border-color: transparent;
+}
+.label{
+    -fx-text-fill: #f6780b;
 }

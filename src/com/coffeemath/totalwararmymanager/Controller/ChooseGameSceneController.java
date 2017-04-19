@@ -22,7 +22,6 @@ public class ChooseGameSceneController implements Initializable {
     @FXML private TableView<Game> games;
     @FXML private Button addBtn;
     @FXML private Button backBtn;
-    @FXML private Label playerLabel;
 
     /** Load Database List **/
     public static Games gameScroll;
@@ -47,7 +46,6 @@ public class ChooseGameSceneController implements Initializable {
         gameScroll = ChoosePlayerSceneController.playerScroll.PCursor.p_games;
         games.setItems(gameScroll.GameList);
         games.prefHeightProperty().bind(root.widthProperty().multiply(0.925));
-        playerLabel.setText(ChoosePlayerSceneController.playerScroll.PCursor.getName());
         GraphicColumn<Game,Game> gameCol = new GraphicColumn<>("game",gameCell);
         GraphicColumn<Game,Game> editCol = new GraphicColumn<>("game",editCell);
         GraphicColumn<Game,Game> delCol = new GraphicColumn<>("game",delCell);

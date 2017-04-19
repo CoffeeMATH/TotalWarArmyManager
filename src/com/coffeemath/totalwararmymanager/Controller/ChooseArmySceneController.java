@@ -25,8 +25,6 @@ public class ChooseArmySceneController implements Initializable {
     @FXML private TableView<Army> armies;
     @FXML private Button addBtn;
     @FXML private Button backBtn;
-    @FXML private Label playerLabel;
-    @FXML private Label gameLabel;
 
     /** Load Database List **/
     public static Armies armyScroll;
@@ -44,11 +42,10 @@ public class ChooseArmySceneController implements Initializable {
     /** Presentation **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        functions.fix(root,600,400);
         armyScroll = ChooseGameSceneController.gameScroll.GCursor.g_armies;
         armies.prefHeightProperty().bind(root.heightProperty().multiply(0.925));
         armies.setItems(armyScroll.ArmyList);
-        playerLabel.setText(ChoosePlayerSceneController.playerScroll.PCursor.getName());
-        gameLabel.setText(ChooseGameSceneController.gameScroll.GCursor.getName());
         GraphicColumn<Army,Army> armyCol = new GraphicColumn<>("army",armyCell);
         GraphicColumn<Army,Army> delCol = new GraphicColumn<>("army",delCell);
         GraphicColumn<Army,Army> ucCol = new GraphicColumn<>("UC","army",UCCell);
