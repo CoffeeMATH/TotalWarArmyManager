@@ -17,7 +17,7 @@ public class Armies {
     int gameID;
     int faction;
 
-    public Armies(int gID, int ttype){
+    public Armies(int gID, int faction){
         this.gameID = gID;
         try{
             Class.forName("org.sqlite.JDBC");
@@ -26,14 +26,11 @@ public class Armies {
 
             stmt1 = c.createStatement();
 
-            String sql = "SELECT * FROM GAMES WHERE GAME_ID = " + gID ;
+            System.out.println("do");
+
+
+            String sql = "SELECT * FROM GAME_ARMY WHERE G_ID = " + gID ;
             ResultSet rset = stmt1.executeQuery(sql);
-            rset.next();
-            this.faction = rset.getInt("FACTION_ID");
-
-
-            sql = "SELECT * FROM GAME_ARMY WHERE G_ID = " + gID ;
-            rset = stmt1.executeQuery(sql);
 
             while (rset.next()){
                 stmt2 = c.createStatement();
@@ -42,6 +39,7 @@ public class Armies {
                 ResultSet army = stmt2.executeQuery(sql);
                 army.next();
                 String aName = army.getString("ARMY_NAME");
+                int ttype = army.getInt("TERRAIN_TYPE");
                 Army temp = new Army(aName, aID, faction, ttype);
                 ArmyList.add(temp);
                 army.close();
@@ -68,7 +66,7 @@ public class Armies {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String sql = "INSERT INTO ARMY (ARMY_NAME, TERRAIN_TYPE)" + " VALUES ('"+ army_name + "' , 1);";
+            String sql = "INSERT INTO ARMY (ARMY_NAME, TERRAIN_TYPE)" + " VALUES ('"+ army_name + "' , " + ttype + ");";
             stmt.executeUpdate(sql);
             ResultSet rs = stmt.executeQuery( "SELECT * FROM ARMY WHERE ARMY_NAME LIKE '" + army_name +"';" );
             int id = 0;

@@ -54,7 +54,7 @@ public class Games{
         }
     }
     public boolean addGame(String gname, String faction){
-        int fact = 0;
+        int fact = -1;
         switch(faction){
             case "Rome":
                 fact = 0;
@@ -82,14 +82,18 @@ public class Games{
            // ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gname +";" );
            /* if(!rs.wasNull())
                 return false; */
-            String sql = "INSERT INTO GAMES (GAME_NAME, FACTION_ID)" + "VALUES ('" + gname + "' , '" + fact+ "');";
+            String sql = "INSERT INTO GAMES (GAME_NAME, FACTION_ID)" + "VALUES ('" + gname + "' , " + fact+ ");";
 
             stmt.executeUpdate(sql);
+
             ResultSet rs = stmt.executeQuery( "SELECT * FROM GAMES WHERE GAME_NAME ='" + gname +"';" );
             int id = 0;
 
+            System.out.println("why1");
             if(rs.next())
                 id = rs.getInt("GAME_ID");
+
+            System.out.println("why2");
             Game temp = new Game(gname, id, fact);
 
             String sql1 = "INSERT INTO PLAYER_GAME (P_ID, G_ID)" + "VALUES (" + this.playerID +","+ id +");";
