@@ -22,6 +22,6 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <ChoiceBox layoutX="32.0" layoutY="97.0" prefHeight="31.0" prefWidth="185.0" />
+      <ChoiceBox fx:id="factions" layoutX="32.0" layoutY="97.0" prefHeight="31.0" prefWidth="185.0" />
    </children>
 </AnchorPane>

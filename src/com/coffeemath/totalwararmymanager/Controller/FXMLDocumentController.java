@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.image.*;
 import java.lang.*;
@@ -24,19 +25,16 @@ import java.lang.*;
  */
 public class FXMLDocumentController implements Initializable {
     Functions functions = new Functions();
-    @FXML private ImageView image;
+    @FXML private AnchorPane parent;
     @FXML private Button button;
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException{
-        Stage stage; 
-        Parent root;
         if(event.getSource()==button){
             functions.goToScene(button,"View/Scenes/MainScenes/choosePlayerScene.fxml");
        }
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       // image.setImage(new Image ("/average.png"));
     }
 }

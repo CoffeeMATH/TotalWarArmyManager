@@ -15,8 +15,9 @@ public class Armies {
     private Statement stmt1;
     private Statement stmt2;
     int gameID;
+    int faction;
 
-    public Armies(int gID){
+    public Armies(int gID, int faction){
         this.gameID = gID;
         try{
             Class.forName("org.sqlite.JDBC");
@@ -35,7 +36,8 @@ public class Armies {
                 ResultSet army = stmt2.executeQuery(sql);
                 army.next();
                 String aName = army.getString("ARMY_NAME");
-                Army temp = new Army(aName, aID);
+                int ttype = army.getInt("TERRAIN_TYPE");
+                Army temp = new Army(aName, aID, faction, ttype);
                 ArmyList.add(temp);
                 army.close();
                 stmt2.close();

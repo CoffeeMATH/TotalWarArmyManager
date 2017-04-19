@@ -11,16 +11,20 @@ public class Army {
     public String a_name;
     public Army army;
     public int a_id;
+    public int terrain_type;
+    public int faction;
     public ArrayList<Unit> a_units = new ArrayList<>();
     public int a_size = 0;
 
     private Connection c;
     private Statement stmt1;
     private Statement stmt2;
-    public Army(String aname, int aID){
+    public Army(String aname, int aID, int fact, int ttype){
         army = this;
         this.a_name = aname;
         this.a_id = aID;
+        this.faction = fact;
+        this.terrain_type = ttype;
         try{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
@@ -74,6 +78,7 @@ public class Army {
                 Unit temp = new Unit(unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
 
                 a_units.add(temp);
+                a_size++;
                 unit.close();
                 stmt1.close();
                 c.close();
@@ -84,6 +89,7 @@ public class Army {
                 System.exit(0);
             }
         }
+
         return true;
     }
 

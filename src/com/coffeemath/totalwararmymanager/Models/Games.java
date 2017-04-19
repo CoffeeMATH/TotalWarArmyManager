@@ -37,8 +37,9 @@ public class Games{
                 ResultSet game = stmt2.executeQuery(sql);
                 game.next();
                 String gName = game.getString("GAME_NAME");
+                int gFact = game.getInt("FACTION_ID");
                 
-                Game temp = new Game(gName, gID);
+                Game temp = new Game(gName, gID, gFact);
                 GameList.add(temp);
                 game.close();
                 stmt2.close();
@@ -52,7 +53,24 @@ public class Games{
             System.exit(0);
         }
     }
-    public boolean addGame(String gname){
+    public boolean addGame(String gname, String faction){
+        int fact = -1;
+        switch(faction){
+            case "Rome":
+                fact = 0;
+                break;
+
+            case "Carthage":
+                fact = 1;
+                break;
+
+            case "Macedon":
+                fact = 2;
+                break;
+
+            default:
+                break;
+        }
         try{
             Connection c = null;
             Statement stmt = null;
@@ -64,15 +82,19 @@ public class Games{
            // ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gname +";" );
            /* if(!rs.wasNull())
                 return false; */
-            String sql = "INSERT INTO GAMES (GAME_NAME, FACTION_ID)" + "VALUES ('" + gname + "' ,1);";
+            String sql = "INSERT INTO GAMES (GAME_NAME, FACTION_ID)" + "VALUES ('" + gname + "' , " + fact+ ");";
 
             stmt.executeUpdate(sql);
+
             ResultSet rs = stmt.executeQuery( "SELECT * FROM GAMES WHERE GAME_NAME ='" + gname +"';" );
             int id = 0;
 
+            System.out.println("why1");
             if(rs.next())
                 id = rs.getInt("GAME_ID");
-            Game temp = new Game(gname, id);
+
+            System.out.println("why2");
+            Game temp = new Game(gname, id, fact);
 
             String sql1 = "INSERT INTO PLAYER_GAME (P_ID, G_ID)" + "VALUES (" + this.playerID +","+ id +");";
             stmt.executeUpdate(sql1);
