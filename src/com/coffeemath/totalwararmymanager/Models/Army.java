@@ -125,9 +125,9 @@ public class Army {
                 totalRC -= rs.getInt("RECRUITMENT_COST");
                 totalUC -= rs.getInt("UPKEEP_COST");
 
-                rs = stmt1.executeQuery("SELECT * FROM RECRUITMENT WHERE A_ID = " + a_id + " AND U_ID = " + uID + ";");
+                rs = stmt1.executeQuery("SELECT ROWID, * FROM RECRUITMENT WHERE A_ID = " + a_id + " AND U_ID = " + uID + ";");
                 rs.next();
-                int rowID = rs.getInt("_ROWID");
+                int rowID = rs.getInt("ROWID");
                 stmt1.executeUpdate("DELETE FROM RECRUITMENT WHERE ROWID = " + rowID + ";");
 
                 rs.close();
