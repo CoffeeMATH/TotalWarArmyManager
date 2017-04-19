@@ -17,8 +17,9 @@ public class Armies {
     int gameID;
     int faction;
 
-    public Armies(int gID, int faction){
+    public Armies(int gID, int fact){
         this.gameID = gID;
+        this.faction = fact;
         try{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
@@ -37,7 +38,7 @@ public class Armies {
                 army.next();
                 String aName = army.getString("ARMY_NAME");
                 int ttype = army.getInt("TERRAIN_TYPE");
-                Army temp = new Army(aName, aID, faction, ttype);
+                Army temp = new Army(aName, aID, fact, ttype);
                 ArmyList.add(temp);
                 army.close();
                 stmt2.close();
@@ -69,7 +70,7 @@ public class Armies {
             int id = 0;
             if(rs.next())
                 id = rs.getInt("ARMY_ID");
-            Army temp = new Army(armyName, id);
+            Army temp = new Army(armyName, id, faction, terrainType);
             String sql1 = "INSERT INTO GAME_ARMY (G_ID, A_ID)" + "VALUES (" + gameID +","+ id +");";
             stmt.executeUpdate(sql1);
             ArmyList.add(temp);
