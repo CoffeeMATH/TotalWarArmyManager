@@ -16,7 +16,7 @@ public class Army {
     public int a_id;
     public int terrain_type;
     public int faction;
-    public ArrayList<Unit> a_units = new ArrayList<>();
+    public ObservableList<Unit> a_units = FXCollections.observableArrayList();
     public int a_size = 0;
     private int totalUC =0;
     private int totalRC = 0;
@@ -78,15 +78,22 @@ public class Army {
 
                 stmt1 = c.createStatement();
 
-                String sql = "SELECT * FROM UNIT WHERE UNIT_NAME = " + unit_name + ";";
+
+
+                String sql = "SELECT * FROM UNIT WHERE UNIT_NAME = '" + unit_name + "';";
                 ResultSet unit = stmt1.executeQuery(sql);
                 Unit temp = new Unit(unit.getInt("UNIT_ID"), unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
+
+                sql = "INSERT INTO RECRUITMENT(A_ID, U_ID) VALUES (" + this.a_id + "," + temp.u_ID + ");";
+                stmt1.executeUpdate(sql);
+
                 totalRC += temp.u_RCost;
                 totalUC += temp.u_UCost;
                 a_units.add(temp);
                 a_size++;
                 unit.close();
                 stmt1.close();
+                c.commit();
                 c.close();
 
 
@@ -118,10 +125,10 @@ public class Army {
                 totalRC -= rs.getInt("RECRUITMENT_COST");
                 totalUC -= rs.getInt("UPKEEP_COST");
 
-                rs = stmt1.executeQuery("SELECT * FROM RECRUITMENT WHERE A_ID = " + this.a_id + "AND U_ID = " + uID + ";");
+                rs = stmt1.executeQuery("SELECT * FROM RECRUITMENT WHERE A_ID = " + a_id + " AND U_ID = " + uID + ";");
                 rs.next();
-                int rowID = rs.getInt("ROW_ID");
-                stmt1.executeUpdate("DELETE FROM RECRUITMENT WHERE ROW_ID = " + rowID + ";");
+                int rowID = rs.getInt("_ROWID");
+                stmt1.executeUpdate("DELETE FROM RECRUITMENT WHERE ROWID = " + rowID + ";");
 
                 rs.close();
                 stmt1.close();

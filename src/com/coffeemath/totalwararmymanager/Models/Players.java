@@ -49,7 +49,6 @@ public class Players {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            System.out.println("1");
 
             /*if(!rs.wasNull()){
                 System.out.println("here");

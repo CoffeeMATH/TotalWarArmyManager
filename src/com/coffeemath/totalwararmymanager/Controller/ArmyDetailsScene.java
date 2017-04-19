@@ -40,13 +40,14 @@ public class ArmyDetailsScene implements Initializable {
     private GraphicAction<Unit> unitCol_c = item -> new Label(item.getName());
     private GraphicAction<Unit> ucPercentageCol_c = item -> new Label(String.valueOf(item.u_UCost));
     private GraphicAction<Unit> rcPercentageCol_c = item -> new Label(String.valueOf(item.u_RCost));
-    private GraphicAction<Unit> delCol_c = item -> functions.activatedButton("Delete", e -> stillCursor.deleteUnit(stillCursor.a_units.indexOf(item)));
+    private GraphicAction<Unit> delCol_c = item -> functions.activatedButton("Delete", e -> {stillCursor.deleteUnit(stillCursor.a_units.indexOf(item)); units.refresh();});
 
     /** Presentation **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         stillCursor = ChooseArmySceneController.armyScroll.ACursor;
-        stillCursor.showUnit().addListener(new ListChangeListener<Unit>() {
+        units.setItems(stillCursor.a_units);
+        stillCursor.a_units.addListener(new ListChangeListener<Unit>() {
             @Override
             public void onChanged(Change<? extends Unit> c) {
                 while(c.next()) units.refresh();
@@ -59,6 +60,7 @@ public class ArmyDetailsScene implements Initializable {
         GraphicColumn<Unit,Unit> delCol = new GraphicColumn<>("unit",  delCol_c);
         unitCol.prefWidthProperty().bind(units.widthProperty().multiply(0.8));
         delCol.prefWidthProperty().bind(units.widthProperty().multiply(0.2));
+        units.getColumns().addAll(unitCol,delCol);
         addBtn.setOnAction(e -> functions.openNewWindow("Add Unit","View/Scenes/CreateScenes/unitName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/chooseArmyScene.fxml"));
     }
