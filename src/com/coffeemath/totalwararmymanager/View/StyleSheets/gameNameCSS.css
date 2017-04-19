@@ -1,0 +1,10 @@
+.gameField{
+    -fx-text-alignment: justify;
+    -fx-text-fill: darkslategray;
+    -fx-highlight-text-fill: darkgray;
+}
+.addGame{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkred;
+}

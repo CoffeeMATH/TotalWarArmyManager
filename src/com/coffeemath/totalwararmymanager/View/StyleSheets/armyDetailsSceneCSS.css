@@ -1,0 +1,5 @@
+.armyLabel{
+    -fx-background-color: ThreeDHighlight;
+    -fx-text-alignment: center;
+    -fx-text-fill: peru;
+}
