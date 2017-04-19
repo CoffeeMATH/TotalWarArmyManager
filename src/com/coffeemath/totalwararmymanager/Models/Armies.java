@@ -26,7 +26,7 @@ public class Armies {
 
             stmt1 = c.createStatement();
 
-            String sql = "SELECT * FROM GAME WHERE GAME_ID = " + gID ;
+            String sql = "SELECT * FROM GAMES WHERE GAME_ID = " + gID ;
             ResultSet rset = stmt1.executeQuery(sql);
             rset.next();
             this.faction = rset.getInt("FACTION_ID");

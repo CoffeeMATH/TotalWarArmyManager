@@ -1,7 +1,6 @@
 package com.coffeemath.totalwararmymanager.Controller.PopUps;
 
 import com.coffeemath.totalwararmymanager.Controller.ChooseArmySceneController;
-import com.coffeemath.totalwararmymanager.Controller.TestModels.Army;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +19,11 @@ public class ArmyNameController implements Initializable {
     @FXML private RadioButton navalOption;
     private ToggleGroup toggleGroup = new ToggleGroup();
     @FXML private void addTheArmy(ActionEvent event){
-        ChooseArmySceneController.armyScroll.addArmy(armyField.getText());
+        String terrain = ((RadioButton)toggleGroup.getSelectedToggle()).getText();
+        int ttype;
+        if(terrain.equals("Land")) ttype = 0;
+        else ttype = 1;
+        ChooseArmySceneController.armyScroll.addArmy(armyField.getText(),ttype);
         ((Stage)armyField.getScene().getWindow()).close();
     }
 

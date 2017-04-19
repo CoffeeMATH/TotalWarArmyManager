@@ -82,7 +82,7 @@ public class Games{
            // ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gname +";" );
            /* if(!rs.wasNull())
                 return false; */
-            String sql = "INSERT INTO GAMES (GAME_NAME, FACTION_ID)" + "VALUES ('" + gname + "' , '" + faction + "');";
+            String sql = "INSERT INTO GAMES (GAME_NAME, FACTION_ID)" + "VALUES ('" + gname + "' , '" + fact+ "');";
 
             stmt.executeUpdate(sql);
             ResultSet rs = stmt.executeQuery( "SELECT * FROM GAMES WHERE GAME_NAME ='" + gname +"';" );

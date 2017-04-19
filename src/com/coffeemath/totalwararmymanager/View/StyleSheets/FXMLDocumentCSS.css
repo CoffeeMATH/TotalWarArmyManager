@@ -1,7 +1,6 @@
 .root{
     -fx-background-color: darkred;
-    -fx-background-image: url("../Backgrounds/FXML.jpg");
-    -fx-background-size: cover;
+
 }
 .button{
     -fx-background-color: transparent;
