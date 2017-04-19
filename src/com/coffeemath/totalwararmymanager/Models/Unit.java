@@ -1,6 +1,5 @@
 package com.coffeemath.totalwararmymanager.Models;
 
-import java.sql.*;
 /**
  * Created by Paul on 31/03/2017.
  */
@@ -23,4 +22,10 @@ public class Unit {
     public String getName(){return this.u_name;}
     public Unit getUnit(){return this;}
 
+    /**
+     * Created by Paul on 31/03/2017.
+     */
+    public static class toController {
+
+    }
 }
