@@ -27,7 +27,10 @@ public class UnitNameController implements Initializable {
 
     /** Column Functions **/
     private Functions functions = new Functions();
-    private GraphicAction<Unit> units = item -> functions.activatedButton(item.getName(),e -> ArmyDetailsScene.stillCursor.addUnit(item.getName()));
+    private GraphicAction<Unit> units = item -> functions.activatedButton(item.getName(),e -> {
+        if(!ArmyDetailsScene.stillCursor.addUnit(item.getName()))
+            functions.openNewWindow("Army Full","View/Scenes/WarningScenes/UnitsFullScene.fxml");
+    });
 
     /** Presentation **/
     @Override

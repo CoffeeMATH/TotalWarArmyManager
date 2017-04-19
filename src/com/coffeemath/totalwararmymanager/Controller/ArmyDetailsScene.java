@@ -58,9 +58,13 @@ public class ArmyDetailsScene implements Initializable {
         armyLabel.setText(ChooseArmySceneController.armyScroll.ACursor.getName());
         GraphicColumn<Unit,Unit> unitCol = new GraphicColumn<>("unit", unitCol_c);
         GraphicColumn<Unit,Unit> delCol = new GraphicColumn<>("unit",  delCol_c);
-        unitCol.prefWidthProperty().bind(units.widthProperty().multiply(0.8));
+        GraphicColumn<Unit,Unit> ucCol = new GraphicColumn<>("unit",ucPercentageCol_c);
+        GraphicColumn<Unit,Unit> rcCol = new GraphicColumn<>("unit",rcPercentageCol_c);
+        unitCol.prefWidthProperty().bind(units.widthProperty().multiply(0.5));
+        ucCol.prefWidthProperty().bind(units.widthProperty().multiply(0.15));
+        rcCol.prefWidthProperty().bind(units.widthProperty().multiply(0.15));
         delCol.prefWidthProperty().bind(units.widthProperty().multiply(0.2));
-        units.getColumns().addAll(unitCol,delCol);
+        units.getColumns().addAll(unitCol,ucCol,rcCol,delCol);
         addBtn.setOnAction(e -> functions.openNewWindow("Add Unit","View/Scenes/CreateScenes/unitName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/chooseArmyScene.fxml"));
     }

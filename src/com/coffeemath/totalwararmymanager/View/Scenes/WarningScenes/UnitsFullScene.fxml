@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="114.0" prefWidth="242.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.PopUps.Warnings.UnitsFullController">
+   <children>
+      <Label fx:id="handle" layoutX="18.0" layoutY="40.0" text="You can no longer handle more troops." />
+      <Button onAction="#close" layoutX="105.0" layoutY="75.0" mnemonicParsing="false" text="OK" />
+   </children>
+</AnchorPane>

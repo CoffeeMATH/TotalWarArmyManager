@@ -113,6 +113,7 @@ public class Army {
         else {
             int uID = a_units.get(index).u_ID;
             a_units.remove(index);
+            a_size--;
             try {
                 Class.forName("org.sqlite.JDBC");
                 c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
@@ -174,5 +175,11 @@ public class Army {
         return unitList;
     }
 
+    public int getTotalUC() {
+        return totalUC;
+    }
 
+    public int getTotalRC() {
+        return totalRC;
+    }
 }
