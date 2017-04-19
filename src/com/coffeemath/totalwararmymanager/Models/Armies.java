@@ -67,7 +67,7 @@ public class Armies {
             int id = 0;
             if(rs.next())
                 id = rs.getInt("ARMY_ID");
-            Army temp = new Army(army_name, id);
+            Army temp = new Army(armyName, id);
             String sql1 = "INSERT INTO GAME_ARMY (G_ID, A_ID)" + "VALUES (" + gameID +","+ id +");";
             stmt.executeUpdate(sql1);
             ArmyList.add(temp);
