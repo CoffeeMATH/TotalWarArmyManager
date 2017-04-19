@@ -13,7 +13,7 @@ public class Games{
     public ObservableList<Game> GameList = FXCollections.observableArrayList();
     public Game GCursor;
     private Connection c;
-    private Statement stmt1;
+    private Statement stmt;
     private Statement stmt2;
     int playerID;
 
@@ -24,10 +24,10 @@ public class Games{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
 
-            stmt1 = c.createStatement();
+            stmt = c.createStatement();
 
             String sql = "SELECT * FROM PLAYER_GAME WHERE P_ID = " + pID;
-            ResultSet rset = stmt1.executeQuery(sql);
+            ResultSet rset = stmt.executeQuery(sql);
 
             while (rset.next()){
                 stmt2 = c.createStatement();
@@ -46,7 +46,7 @@ public class Games{
             }
 
             rset.close();
-            stmt1.close();
+            stmt.close();
             c.close();
         } catch(Exception e){
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -72,8 +72,7 @@ public class Games{
                 break;
         }
         try{
-            Connection c = null;
-            Statement stmt = null;
+
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);
@@ -121,8 +120,7 @@ public class Games{
         int gid = GameList.get(index).g_id;
         GameList.remove(index);
         try{
-            Connection c = null;
-            Statement stmt = null;
+
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);
@@ -145,8 +143,7 @@ public class Games{
     }
     public boolean updateGame(int gameList_index, String newGameName){
         try{
-            Connection c = null;
-            Statement stmt = null;
+
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);

@@ -12,7 +12,7 @@ public class Armies {
     public ObservableList<Army> ArmyList= FXCollections.observableArrayList();
     public Army ACursor;
     private Connection c;
-    private Statement stmt1;
+    private Statement stmt;
     private Statement stmt2;
     int gameID;
     int faction;
@@ -23,12 +23,12 @@ public class Armies {
         try{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
-            //c.setAutoCommit(false);
+            c.setAutoCommit(false);
 
-            stmt1 = c.createStatement();
+            stmt = c.createStatement();
 
             String sql = "SELECT * FROM GAME_ARMY WHERE G_ID = " + gID ;
-            ResultSet rset = stmt1.executeQuery(sql);
+            ResultSet rset = stmt.executeQuery(sql);
 
             while (rset.next()){
                 stmt2 = c.createStatement();
@@ -44,7 +44,7 @@ public class Armies {
                 stmt2.close();
             }
             rset.close();
-            stmt1.close();
+            stmt.close();
             c.close();
 
         } catch(Exception e) {
@@ -55,10 +55,8 @@ public class Armies {
 
 
     public boolean addArmy(String armyName, int terrainType, String leaderName){
-
         try {
-            Connection c = null;
-            Statement stmt = null;
+
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);
@@ -92,8 +90,7 @@ public class Armies {
         ArmyList.remove(index);
 
         try {
-            Connection c = null;
-            Statement stmt = null;
+
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);
@@ -119,8 +116,7 @@ public class Armies {
 
     public boolean updateArmy(int armyList_index, String newArmyName){
         try {
-            Connection c = null;
-            Statement stmt = null;
+
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);

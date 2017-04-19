@@ -42,8 +42,7 @@ public class Players {
     }
     public boolean addPlayer(String pname){
         try{
-            Connection c = null;
-            Statement stmt  = null;
+
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);
@@ -86,8 +85,7 @@ public class Players {
         int pid = PlayerList.get(index).getId();
         PlayerList.remove(index);
         try{
-            Connection c = null;
-            Statement stmt  = null;
+
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);
@@ -110,8 +108,7 @@ public class Players {
 
     public boolean updatePlayer(int playerList_index, String newPlayerName){
         try{
-            Connection c = null;
-            Statement stmt  = null;
+
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:TWAMDatabase.db");
             c.setAutoCommit(false);
