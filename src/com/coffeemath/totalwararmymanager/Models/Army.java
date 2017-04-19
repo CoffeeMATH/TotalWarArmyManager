@@ -1,5 +1,7 @@
 package com.coffeemath.totalwararmymanager.Models;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,15 +19,17 @@ public class Army {
     public int terrain_type;
     public int faction;
     public ObservableList<Unit> a_units = FXCollections.observableArrayList();
+    public String leader_name;
     public int a_size = 0;
-    private int totalUC =0;
-    private int totalRC = 0;
+    private IntegerProperty totalUC = new SimpleIntegerProperty(0);
+    private IntegerProperty totalRC = new SimpleIntegerProperty(0);
     private Connection c;
     private Statement stmt1;
     private Statement stmt2;
-    public Army(String aname, int aID, int fact, int ttype){
+    public Army(String aname, int aID, int fact, int ttype, String leader_name){
         army = this;
         this.a_name = aname;
+        this.leader_name = leader_name;
         this.a_id = aID;
         this.faction = fact;
         this.terrain_type = ttype;
@@ -44,8 +48,8 @@ public class Army {
                 int uID = rset.getInt("U_ID");
                 ResultSet unit = stmt2.executeQuery("SELECT * FROM UNIT WHERE UNIT_ID = " + uID + ";");
                 Unit temp = new Unit(uID, unit.getString("UNIT_NAME"), unit.getInt("RECRUITMENT_COST"), unit.getInt("UPKEEP_COST"), unit.getInt("T_TYPE"));
-                totalRC += temp.u_RCost;
-                totalUC += temp.u_UCost;
+                totalRC.set(totalRC.get()+temp.u_RCost);
+                totalUC.set(totalUC.get()+temp.u_UCost);
                 a_units.add(temp);
                 unit.close();
                 stmt2.close();
@@ -87,8 +91,8 @@ public class Army {
                 sql = "INSERT INTO RECRUITMENT(A_ID, U_ID) VALUES (" + this.a_id + "," + temp.u_ID + ");";
                 stmt1.executeUpdate(sql);
 
-                totalRC += temp.u_RCost;
-                totalUC += temp.u_UCost;
+                totalRC.set(totalRC.get()+temp.u_RCost);
+                totalUC.set(totalUC.get()+temp.u_UCost);
                 a_units.add(temp);
                 a_size++;
                 unit.close();
@@ -123,8 +127,8 @@ public class Army {
 
                 ResultSet rs = stmt1.executeQuery("SELECT * FROM UNIT WHERE UNIT_ID = " + uID + ";");
                 rs.next();
-                totalRC -= rs.getInt("RECRUITMENT_COST");
-                totalUC -= rs.getInt("UPKEEP_COST");
+                totalRC.set(totalRC.get()-rs.getInt("RECRUITMENT_COST"));
+                totalUC.set(totalUC.get()-rs.getInt("UPKEEP_COST"));
 
                 rs = stmt1.executeQuery("SELECT ROWID, * FROM RECRUITMENT WHERE A_ID = " + a_id + " AND U_ID = " + uID + ";");
                 rs.next();
@@ -176,10 +180,18 @@ public class Army {
     }
 
     public int getTotalUC() {
+        return totalUC.get();
+    }
+
+    public IntegerProperty totalUCProperty() {
         return totalUC;
     }
 
     public int getTotalRC() {
+        return totalRC.get();
+    }
+
+    public IntegerProperty totalRCProperty() {
         return totalRC;
     }
 }

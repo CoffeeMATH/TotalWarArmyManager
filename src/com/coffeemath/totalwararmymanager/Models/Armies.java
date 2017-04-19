@@ -37,8 +37,9 @@ public class Armies {
                 ResultSet army = stmt2.executeQuery(sql);
                 army.next();
                 String aName = army.getString("ARMY_NAME");
+                String lName = army.getString("ARMY_LEADER");
                 int ttype = army.getInt("TERRAIN_TYPE");
-                Army temp = new Army(aName, aID, fact, ttype);
+                Army temp = new Army(aName, aID, fact, ttype,lName);
                 ArmyList.add(temp);
                 army.close();
                 stmt2.close();
@@ -70,7 +71,7 @@ public class Armies {
             int id = 0;
             if(rs.next())
                 id = rs.getInt("ARMY_ID");
-            Army temp = new Army(armyName, id, faction, terrainType);
+            Army temp = new Army(armyName, id, faction, terrainType,leaderName);
             String sql1 = "INSERT INTO GAME_ARMY (G_ID, A_ID)" + "VALUES (" + gameID +","+ id +");";
             stmt.executeUpdate(sql1);
             ArmyList.add(temp);
