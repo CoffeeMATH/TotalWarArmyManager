@@ -37,8 +37,9 @@ public class Games{
                 ResultSet game = stmt2.executeQuery(sql);
                 game.next();
                 String gName = game.getString("GAME_NAME");
+                int gFact = game.getInt("FACTION_ID");
                 
-                Game temp = new Game(gName, gID);
+                Game temp = new Game(gName, gID, gFact);
                 GameList.add(temp);
                 game.close();
                 stmt2.close();
@@ -52,7 +53,7 @@ public class Games{
             System.exit(0);
         }
     }
-    public boolean addGame(String gname){
+    public boolean addGame(String gname, int faction){
         try{
             Connection c = null;
             Statement stmt = null;
@@ -64,7 +65,7 @@ public class Games{
            // ResultSet rs = stmt.executeQuery("SELECT * FROM GAMES WHERE GAME_NAME =" + gname +";" );
            /* if(!rs.wasNull())
                 return false; */
-            String sql = "INSERT INTO GAMES (GAME_NAME, FACTION_ID)" + "VALUES ('" + gname + "' ,1);";
+            String sql = "INSERT INTO GAMES (GAME_NAME, FACTION_ID)" + "VALUES ('" + gname + "' , '" + faction + "');";
 
             stmt.executeUpdate(sql);
             ResultSet rs = stmt.executeQuery( "SELECT * FROM GAMES WHERE GAME_NAME ='" + gname +"';" );
@@ -72,7 +73,7 @@ public class Games{
 
             if(rs.next())
                 id = rs.getInt("GAME_ID");
-            Game temp = new Game(gname, id);
+            Game temp = new Game(gname, id, faction);
 
             String sql1 = "INSERT INTO PLAYER_GAME (P_ID, G_ID)" + "VALUES (" + this.playerID +","+ id +");";
             stmt.executeUpdate(sql1);

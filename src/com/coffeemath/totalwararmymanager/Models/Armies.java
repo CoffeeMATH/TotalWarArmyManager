@@ -15,8 +15,9 @@ public class Armies {
     private Statement stmt1;
     private Statement stmt2;
     int gameID;
+    int faction;
 
-    public Armies(int gID){
+    public Armies(int gID, int ttype){
         this.gameID = gID;
         try{
             Class.forName("org.sqlite.JDBC");
@@ -25,8 +26,14 @@ public class Armies {
 
             stmt1 = c.createStatement();
 
-            String sql = "SELECT * FROM GAME_ARMY WHERE G_ID = " + gID ;
+            String sql = "SELECT * FROM GAME WHERE GAME_ID = " + gID ;
             ResultSet rset = stmt1.executeQuery(sql);
+            rset.next();
+            this.faction = rset.getInt("FACTION_ID");
+
+
+            sql = "SELECT * FROM GAME_ARMY WHERE G_ID = " + gID ;
+            rset = stmt1.executeQuery(sql);
 
             while (rset.next()){
                 stmt2 = c.createStatement();
@@ -35,7 +42,7 @@ public class Armies {
                 ResultSet army = stmt2.executeQuery(sql);
                 army.next();
                 String aName = army.getString("ARMY_NAME");
-                Army temp = new Army(aName, aID);
+                Army temp = new Army(aName, aID, faction, ttype);
                 ArmyList.add(temp);
                 army.close();
                 stmt2.close();
@@ -51,7 +58,7 @@ public class Armies {
     }
 
 
-    public boolean addArmy(String army_name){
+    public boolean addArmy(String army_name, int ttype){
 
         try {
             Connection c = null;
@@ -67,7 +74,7 @@ public class Armies {
             int id = 0;
             if(rs.next())
                 id = rs.getInt("ARMY_ID");
-            Army temp = new Army(army_name, id);
+            Army temp = new Army(army_name, id, faction, ttype);
             String sql1 = "INSERT INTO GAME_ARMY (G_ID, A_ID)" + "VALUES (" + gameID +","+ id +");";
             stmt.executeUpdate(sql1);
             ArmyList.add(temp);
