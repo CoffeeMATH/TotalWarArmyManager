@@ -51,7 +51,7 @@ public class Armies {
     }
 
 
-    public boolean addArmy(String army_name){
+    public boolean addArmy(String armyName, int terrainType, String leaderName){
 
         try {
             Connection c = null;
@@ -61,9 +61,9 @@ public class Armies {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            String sql = "INSERT INTO ARMY (ARMY_NAME, TERRAIN_TYPE)" + " VALUES ('"+ army_name + "' , 1);";
+            String sql = "INSERT INTO ARMY (ARMY_NAME, TERRAIN_TYPE)" + " VALUES ('"+ armyName + "' , terrainType);";
             stmt.executeUpdate(sql);
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM ARMY WHERE ARMY_NAME LIKE '" + army_name +"';" );
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM ARMY WHERE ARMY_NAME LIKE '" + armyName +"';" );
             int id = 0;
             if(rs.next())
                 id = rs.getInt("ARMY_ID");
