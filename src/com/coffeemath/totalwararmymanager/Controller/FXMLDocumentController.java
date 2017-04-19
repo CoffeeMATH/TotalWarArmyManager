@@ -13,11 +13,11 @@ import com.coffeemath.totalwararmymanager.Controller.Toolkit.Functions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.scene.image.*;
+
+
 import java.lang.*;
 /**
  *
@@ -25,7 +25,7 @@ import java.lang.*;
  */
 public class FXMLDocumentController implements Initializable {
     Functions functions = new Functions();
-    @FXML private AnchorPane parent;
+    @FXML private Pane parent;
     @FXML private Button button;
 
     @FXML
@@ -36,5 +36,8 @@ public class FXMLDocumentController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        functions.fix(parent,600,400);
+        button.layoutXProperty().bind(parent.widthProperty().subtract(button.getLayoutX()).multiply(0.46));
+        button.layoutYProperty().bind(parent.heightProperty().subtract(button.getLayoutY()).multiply(0.7175));
     }
 }

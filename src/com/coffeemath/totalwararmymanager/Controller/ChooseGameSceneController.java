@@ -43,6 +43,7 @@ public class ChooseGameSceneController implements Initializable {
     /** Presentation **/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        functions.fix(root,600,400);
         gameScroll = ChoosePlayerSceneController.playerScroll.PCursor.p_games;
         games.setItems(gameScroll.GameList);
         games.prefHeightProperty().bind(root.widthProperty().multiply(0.925));

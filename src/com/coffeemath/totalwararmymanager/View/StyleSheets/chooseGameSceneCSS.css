@@ -1,0 +1,15 @@
+.playerLabel{
+    -fx-background-color: ThreeDHighlight;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkslategray;
+}
+.games{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkred;
+}
+.addBtn{
+    -fx-background-color: darkkhaki;
+    -fx-text-alignment: center;
+    -fx-text-fill: black;
+}

@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -40,5 +41,19 @@ public class Functions {
             return FXMLLoader.load(getClass().getResource("../../"+path));
         }
         catch(IOException error){error.printStackTrace(); return null;}
+    }
+    public void fixWidth(Pane pane, double width){
+        pane.setMinWidth(width);
+        pane.setPrefWidth(width);
+        pane.setMaxWidth(width);
+    }
+    public void fixHeight(Pane pane, double height){
+        pane.setMinHeight(height);
+        pane.setPrefHeight(height);
+        pane.setMaxHeight(height);
+    }
+    public void fix(Pane pane,double width, double height){
+        fixWidth(pane,width);
+        fixHeight(pane,height);
     }
 }

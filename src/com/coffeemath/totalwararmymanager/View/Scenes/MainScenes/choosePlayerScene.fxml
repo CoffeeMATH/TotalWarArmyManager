@@ -2,16 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="root" stylesheets="@../../StyleSheets/chooseScenesCSS.css" fx:controller="com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController" maxHeight="1000.0" maxWidth="1000.0" minHeight="400" minWidth="600" prefHeight="0" prefWidth="0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="root" minHeight="400" minWidth="600" prefHeight="400" prefWidth="600" stylesheets="@../../StyleSheets/chooseScenesCSS.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController">
    <children>
-      <TableView fx:id="players" prefHeight="370" prefWidth="600.0"/>
-      <HBox prefHeight="44.0" prefWidth="600.0" spacing="800">
+      <TableView fx:id="players" prefHeight="370" prefWidth="600.0" />
+      <AnchorPane prefHeight="37.0" prefWidth="600.0">
          <children>
-            <Button fx:id="addPlayerBtn"  mnemonicParsing="false" text="Add Player" prefHeight="100" prefWidth="250"/>
-            <Button fx:id="backBtn" mnemonicParsing="false" text="Back" prefHeight="100" prefWidth="250" />
-         </children></HBox>
+            <Button fx:id="backBtn" layoutY="7.0"  mnemonicParsing="false" text="Back" />
+            <Button fx:id="addPlayerBtn" layoutX="524.0" layoutY="7.0"  mnemonicParsing="false" text="Add Player" />
+         </children>
+      </AnchorPane>
    </children>
 </VBox>

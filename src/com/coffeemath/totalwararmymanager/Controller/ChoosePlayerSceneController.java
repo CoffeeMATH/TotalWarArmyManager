@@ -40,6 +40,7 @@ public class ChoosePlayerSceneController implements Initializable{
     /** Presentation **/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        functions.fix(root,600,400);
         players.setItems(playerScroll.PlayerList);
         players.prefHeightProperty().bind(root.heightProperty().multiply(0.925));
         GraphicColumn<Player,Player> playerCol = new GraphicColumn<>("player",playerCell);
