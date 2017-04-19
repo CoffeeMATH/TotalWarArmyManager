@@ -38,25 +38,26 @@ public class ChooseArmySceneController implements Initializable {
         functions.goToScene(armies,"View/Scenes/MainScenes/armyDetailsScene.fxml");
     });
     private GraphicAction<Army> delCell = item -> functions.activatedButton("Delete",e -> armyScroll.deleteArmy(armyScroll.ArmyList.indexOf(item)));
-    //private GraphicAction<String> typeCell = item -> {Label l = new Label(); l.setText(item); return l;};
-    //private GraphicAction<String> genCell = item -> {Label l = new Label(); l.setText(item); return l;};
+    private GraphicAction<Army> UCCell = item -> new Label(String.valueOf(item.getTotalUC()));
+    private GraphicAction<Army> RCCell = item -> new Label(String.valueOf(item.getTotalRC()));
 
     /** Presentation **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         armyScroll = ChooseGameSceneController.gameScroll.GCursor.g_armies;
+        armies.prefHeightProperty().bind(root.heightProperty().multiply(0.925));
         armies.setItems(armyScroll.ArmyList);
         playerLabel.setText(ChoosePlayerSceneController.playerScroll.PCursor.getName());
         gameLabel.setText(ChooseGameSceneController.gameScroll.GCursor.getName());
         GraphicColumn<Army,Army> armyCol = new GraphicColumn<>("army",armyCell);
-        //GraphicColumn<Army,String> typeCol =  new GraphicColumn<>("type",typeCell);
-        //GraphicColumn<Army,String> genCol =  new GraphicColumn<>("genName",genCell);
         GraphicColumn<Army,Army> delCol = new GraphicColumn<>("army",delCell);
+        GraphicColumn<Army,Army> ucCol = new GraphicColumn<>("UC","army",UCCell);
+        GraphicColumn<Army,Army> rcCol = new GraphicColumn<>("RC","army",RCCell);
         armyCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.6));
-        //genCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.3));
-       // typeCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.15));
-        delCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.4));
-        armies.getColumns().addAll(armyCol,delCol);
+        ucCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.125));
+        rcCol.prefWidthProperty().bind(ucCol.widthProperty());
+        delCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.15));
+        armies.getColumns().addAll(armyCol,ucCol,rcCol,delCol);
         addBtn.setOnAction(e -> functions.openNewWindow("Add Army","View/Scenes/CreateScenes/armyName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/chooseGameScene.fxml"));
     }

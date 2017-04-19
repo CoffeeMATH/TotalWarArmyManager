@@ -50,6 +50,7 @@ public class ArmyDetailsScene implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         stillCursor = ChooseArmySceneController.armyScroll.ACursor;
+        units.prefHeightProperty().bind(root.heightProperty().multiply(0.9275));
         units.setItems(stillCursor.a_units);
         stillCursor.a_units.addListener(new ListChangeListener<Unit>() {
             @Override
@@ -63,14 +64,14 @@ public class ArmyDetailsScene implements Initializable {
         genName.setText(stillCursor.leader_name);
         UCLabel.textProperty().bind(stillCursor.totalUCProperty().asString());
         RCLabel.textProperty().bind(stillCursor.totalRCProperty().asString());
-        GraphicColumn<Unit,Unit> unitCol = new GraphicColumn<>("unit", unitCol_c);
+        GraphicColumn<Unit,Unit> unitCol = new GraphicColumn<>("Unit","unit", unitCol_c);
         GraphicColumn<Unit,Unit> delCol = new GraphicColumn<>("unit",  delCol_c);
-        GraphicColumn<Unit,Unit> ucCol = new GraphicColumn<>("unit",ucPercentageCol_c);
-        GraphicColumn<Unit,Unit> rcCol = new GraphicColumn<>("unit",rcPercentageCol_c);
+        GraphicColumn<Unit,Unit> ucCol = new GraphicColumn<>("Upkeep Cost","unit",ucPercentageCol_c);
+        GraphicColumn<Unit,Unit> rcCol = new GraphicColumn<>("Recruitment Cost","unit",rcPercentageCol_c);
         unitCol.prefWidthProperty().bind(units.widthProperty().multiply(0.5));
-        ucCol.prefWidthProperty().bind(units.widthProperty().multiply(0.15));
-        rcCol.prefWidthProperty().bind(units.widthProperty().multiply(0.15));
-        delCol.prefWidthProperty().bind(units.widthProperty().multiply(0.2));
+        ucCol.prefWidthProperty().bind(units.widthProperty().multiply(0.2));
+        rcCol.prefWidthProperty().bind(units.widthProperty().multiply(0.2));
+        delCol.prefWidthProperty().bind(units.widthProperty().multiply(0.1));
         units.getColumns().addAll(unitCol,ucCol,rcCol,delCol);
         addBtn.setOnAction(e -> functions.openNewWindow("Add Unit","View/Scenes/CreateScenes/unitName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/chooseArmyScene.fxml"));

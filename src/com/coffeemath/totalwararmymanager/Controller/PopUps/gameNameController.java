@@ -42,6 +42,7 @@ public class gameNameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> factionList = FXCollections.observableArrayList("Rome","Carthage","Macedon");
         factions.setItems(factionList);
+        factions.getSelectionModel().selectFirst();
         addGame.setOnAction(e -> submit());
         gameField.setOnKeyPressed(e -> {
             if(e.getCode() == KeyCode.ENTER) submit();

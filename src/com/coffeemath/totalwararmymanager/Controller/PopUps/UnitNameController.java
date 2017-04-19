@@ -35,6 +35,7 @@ public class UnitNameController implements Initializable {
     /** Presentation **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        unitSelect.prefHeightProperty().bind(root.heightProperty().multiply(0.885));
         unitSelect.prefWidthProperty().bind(root.widthProperty());
         unitSelect.setItems(ArmyDetailsScene.stillCursor.showUnit());
         GraphicColumn<Unit,Unit> unitCol = new GraphicColumn<>("unit",units);
