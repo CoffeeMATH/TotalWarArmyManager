@@ -1,0 +1,15 @@
+.players {
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkred;
+}
+.addPlayerBtn{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkred;
+}
+.backBtn{
+    -fx-background-color: darkkhaki;
+    -fx-text-alignment: center;
+    -fx-text-fill: black;
+}
