@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="root" stylesheets="@../../StyleSheets/choosePlayerSceneCSS.css" fx:controller="com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController" maxHeight="1000.0" maxWidth="1000.0" minHeight="400" minWidth="600" prefHeight="0" prefWidth="0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="root" stylesheets="@../../StyleSheets/chooseScenesCSS.css" fx:controller="com.coffeemath.totalwararmymanager.Controller.ChoosePlayerSceneController" maxHeight="1000.0" maxWidth="1000.0" minHeight="400" minWidth="600" prefHeight="0" prefWidth="0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView fx:id="players" prefHeight="370" prefWidth="600.0" />
       <HBox prefHeight="44.0" prefWidth="200.0">
          <children>
-            <Button fx:id="addPlayerBtn" mnemonicParsing="false" text="Add Player" />
+            <Button fx:id="addPlayerBtn"  mnemonicParsing="false" text="Add Player" />
             <Button fx:id="backBtn" mnemonicParsing="false" text="Back" />
          </children></HBox>
    </children>

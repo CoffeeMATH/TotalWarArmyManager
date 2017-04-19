@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="185.0" prefWidth="235.0" styleClass="mainFxmlClass" stylesheets="@../../StyleSheets/gameNameCSS.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.PopUps.gameNameController">
+<AnchorPane id="AnchorPane" prefHeight="185.0" prefWidth="235.0" styleClass="root" stylesheets="@../../StyleSheets/namesCSS.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.PopUps.gameNameController">
    <children>
       <TextArea fx:id="gameField" layoutX="28.0" layoutY="40.0" prefHeight="31.0" prefWidth="194.0" />
       <Button fx:id="addGame"  layoutX="87.0" layoutY="140.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="61.0" text="Done">

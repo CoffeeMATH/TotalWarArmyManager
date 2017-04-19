@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="261.0" prefWidth="251.0" styleClass="mainFxmlClass" stylesheets="@../../StyleSheets/armyNameCSS.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.PopUps.ArmyNameController">
+<AnchorPane id="AnchorPane" prefHeight="261.0" prefWidth="251.0" styleClass="root" stylesheets="@../../StyleSheets/namesCSS.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.PopUps.ArmyNameController">
     <children>
         <TextArea fx:id="armyField" layoutX="28.0" layoutY="40.0" prefHeight="31.0" prefWidth="194.0" />
         <Button fx:id="addArmy" layoutX="106.0" layoutY="216.0" mnemonicParsing="false" onAction="#addTheArmy" prefHeight="31.0" prefWidth="61.0" text="Done">
