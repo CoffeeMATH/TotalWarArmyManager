@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox fx:controller="com.coffeemath.totalwararmymanager.Controller.PopUps.UnitNameController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="309.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coffeemath.totalwararmymanager.Controller.PopUps.UnitNameController">
    <children>
-      <GridPane fx:id="unitList" prefHeight="347.0" prefWidth="600.0"/>
+      <TableView fx:id="unitSelect" prefHeight="354.0" prefWidth="600.0" />
+      <AnchorPane prefHeight="47.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="doneButton" layoutX="137.0" layoutY="11.0" mnemonicParsing="false" text="Done" />
+         </children>
+      </AnchorPane>
    </children>
 </VBox>

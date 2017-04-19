@@ -5,6 +5,7 @@ import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicAction;
 import com.coffeemath.totalwararmymanager.Controller.Toolkit.GraphicColumn;
 import com.coffeemath.totalwararmymanager.Models.Army;
 import com.coffeemath.totalwararmymanager.Models.Unit;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -32,18 +33,25 @@ public class ArmyDetailsScene implements Initializable {
     @FXML private Button backBtn;
 
     /** Load Database List **/
-    private Army stillCursor;
+    public static Army stillCursor;
 
     /** Column Functions **/
     private Functions functions = new Functions();
     private GraphicAction<Unit> unitCol_c = item -> new Label(item.getName());
     private GraphicAction<Unit> ucPercentageCol_c = item -> new Label(String.valueOf(item.u_UCost));
     private GraphicAction<Unit> rcPercentageCol_c = item -> new Label(String.valueOf(item.u_RCost));
-    private GraphicAction<Unit> delCol_c = item -> functions.activatedButton("Delete", e -> stillCursor.deleteUnit(item.getName()));
+    private GraphicAction<Unit> delCol_c = item -> functions.activatedButton("Delete", e -> stillCursor.deleteUnit(stillCursor.a_units.indexOf(item)));
+
     /** Presentation **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         stillCursor = ChooseArmySceneController.armyScroll.ACursor;
+        stillCursor.showUnit().addListener(new ListChangeListener<Unit>() {
+            @Override
+            public void onChanged(Change<? extends Unit> c) {
+                while(c.next()) units.refresh();
+            }
+        });
         playerLabel.setText(ChoosePlayerSceneController.playerScroll.PCursor.getName());
         gameLabel.setText(ChooseGameSceneController.gameScroll.GCursor.getName());
         armyLabel.setText(ChooseArmySceneController.armyScroll.ACursor.getName());
