@@ -4,6 +4,7 @@ package com.coffeemath.totalwararmymanager.Models;
  * Created by Paul on 31/03/2017.
  */
 public class Unit {
+    public int u_ID;
     public String u_name;
     public Unit unit;
     public int u_RCost;
@@ -11,8 +12,9 @@ public class Unit {
     public int u_type;
     public int u_ct;
 
-    public Unit(String uname, int rcost, int ucost, int utype){
+    public Unit(int uID, String uname, int rcost, int ucost, int utype){
         unit = this;
+        this.u_ID = uID;
         this.u_name = uname;
         this.u_RCost = rcost;
         this.u_UCost = ucost;
