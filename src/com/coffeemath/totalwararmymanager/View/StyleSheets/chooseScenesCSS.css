@@ -1,0 +1,48 @@
+.gameLabel{
+    -fx-background-color: ThreeDHighlight;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkolivegreen;
+}
+.playerLabel{
+    -fx-background-color: ThreeDHighlight;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkslategray;
+}
+.armies{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: navy;
+}
+.games{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkred;
+}
+.players {
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkred;
+}
+.addPlayerBtn{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkred;
+}
+.addBtn{
+    -fx-background-color: darkkhaki;
+    -fx-text-alignment: center;
+    -fx-text-fill: black;
+}
+.backBtn{
+    -fx-background-color: darkkhaki;
+    -fx-text-alignment: center;
+    -fx-text-fill: black;
+}
+.table-view{
+    -fx-background-color: ;
+}
+.button{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkred;
+}
