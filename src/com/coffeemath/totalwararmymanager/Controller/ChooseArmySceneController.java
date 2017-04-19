@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 public class ChooseArmySceneController implements Initializable {
 
     /** Load UI Elements from FXML **/
+    @FXML private VBox root;
     @FXML private TableView<Army> armies;
     @FXML private Button addBtn;
     @FXML private Button backBtn;
@@ -33,10 +35,11 @@ public class ChooseArmySceneController implements Initializable {
     private Functions functions = new Functions();
     private GraphicAction<Army> armyCell = item -> functions.activatedButton(item.getName(),e -> {
         armyScroll.ACursor = item;
+        functions.goToScene(armies,"View/Scenes/MainScenes/armyDetailsScene.fxml");
     });
     private GraphicAction<Army> delCell = item -> functions.activatedButton("Delete",e -> armyScroll.deleteArmy(armyScroll.ArmyList.indexOf(item)));
-    private GraphicAction<String> typeCell = item -> {Label l = new Label(); l.setText(item); return l;};
-    private GraphicAction<String> genCell = item -> {Label l = new Label(); l.setText(item); return l;};
+    //private GraphicAction<String> typeCell = item -> {Label l = new Label(); l.setText(item); return l;};
+    //private GraphicAction<String> genCell = item -> {Label l = new Label(); l.setText(item); return l;};
 
     /** Presentation **/
     @Override
@@ -46,14 +49,14 @@ public class ChooseArmySceneController implements Initializable {
         playerLabel.setText(ChoosePlayerSceneController.playerScroll.PCursor.getName());
         gameLabel.setText(ChooseGameSceneController.gameScroll.GCursor.getName());
         GraphicColumn<Army,Army> armyCol = new GraphicColumn<>("army",armyCell);
-        GraphicColumn<Army,String> typeCol =  new GraphicColumn<>("type",typeCell);
-        GraphicColumn<Army,String> genCol =  new GraphicColumn<>("genName",genCell);
+        //GraphicColumn<Army,String> typeCol =  new GraphicColumn<>("type",typeCell);
+        //GraphicColumn<Army,String> genCol =  new GraphicColumn<>("genName",genCell);
         GraphicColumn<Army,Army> delCol = new GraphicColumn<>("army",delCell);
-        armyCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.4));
-        genCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.3));
-        typeCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.15));
-        delCol.prefWidthProperty().bind(typeCol.prefWidthProperty());
-        armies.getColumns().addAll(armyCol,genCol,typeCol,delCol);
+        armyCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.6));
+        //genCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.3));
+       // typeCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.15));
+        delCol.prefWidthProperty().bind(armies.widthProperty().multiply(0.4));
+        armies.getColumns().addAll(armyCol,delCol);
         addBtn.setOnAction(e -> functions.openNewWindow("Add Army","View/Scenes/CreateScenes/armyName.fxml"));
         backBtn.setOnAction(e -> functions.goToScene(backBtn,"View/Scenes/MainScenes/chooseGameScene.fxml"));
     }
