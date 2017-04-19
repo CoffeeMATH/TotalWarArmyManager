@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Font?>
-<AnchorPane stylesheets="@../../StyleSheets/editGameCSS.css"
+<AnchorPane stylesheets="@../../StyleSheets/namesCSS.css""
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.coffeemath.totalwararmymanager.Controller.PopUps.EditGameController"

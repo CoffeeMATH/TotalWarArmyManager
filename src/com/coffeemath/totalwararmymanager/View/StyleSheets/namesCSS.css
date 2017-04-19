@@ -1,0 +1,50 @@
+.armyField{
+    -fx-text-alignment: justify;
+    -fx-text-fill: darkslategray;
+    -fx-highlight-text-fill: darkgray;
+}
+.genField{
+    -fx-text-alignment: justify;
+    -fx-text-fill: darkslategray;
+    -fx-highlight-text-fill: cadetblue;
+}
+.gameField{
+    -fx-text-alignment: justify;
+    -fx-text-fill: darkslategray;
+    -fx-highlight-text-fill: darkgray;
+}
+.nameField{
+    -fx-text-alignment: justify;
+    -fx-text-fill: darkslategray;
+    -fx-highlight-text-fill: darkgray;
+}
+.addArmy{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkred;
+}
+.addGame{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkred;
+}
+.addButton{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: darkred;
+}
+.landOption{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: saddlebrown;
+}
+.navalOption{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: aquamarine;
+}
+.label{
+    -fx-background-color: darkgray;
+    -fx-text-alignment: center;
+    -fx-text-fill: aquamarine;
+}
